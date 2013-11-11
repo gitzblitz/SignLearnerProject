@@ -1,0 +1,57 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SpecialKeysIntro2"
+    tools:ignore="MergeRootFrame" >
+
+    <VideoView
+        android:layout_width="wrap_content"
+        android:layout_height="313dp"
+        android:id="@+id/videoView"
+        android:layout_gravity="center_horizontal|top" />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <MediaController
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/mediaController" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Back"
+            android:id="@+id/BtnBack"
+            android:layout_marginLeft="31dp"
+            android:layout_marginBottom="43dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Next"
+            android:id="@+id/BtnNext"
+            android:layout_alignTop="@+id/BtnBack"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="33dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Introduction 2"
+            android:id="@+id/textView"
+            android:layout_marginTop="63dp"
+            android:layout_below="@+id/mediaController"
+            android:layout_alignLeft="@+id/BtnBack" />
+    </RelativeLayout>
+</FrameLayout>
