@@ -1,0 +1,57 @@
+<FrameLayout
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:paddingLeft="2px"
+    android:paddingTop="2px"
+    android:paddingRight="2px"
+    android:paddingBottom="2px">
+
+    <VideoView
+        android:layout_width="wrap_content"
+        android:layout_height="310dp"
+        android:id="@+id/videoView"
+        android:layout_gravity="center_horizontal|top" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <MediaController
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/mediaController"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="177dp" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Back"
+            android:id="@+id/btnBack"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="22dp"
+            android:layout_marginBottom="35dp" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Next"
+            android:id="@+id/btnNext"
+            android:layout_alignTop="@+id/btnBack"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="28dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Introduction"
+            android:id="@+id/Lblintro"
+            android:layout_below="@+id/mediaController"
+            android:layout_alignLeft="@+id/btnBack"
+            android:layout_marginTop="66dp" />
+    </RelativeLayout>
+</FrameLayout>

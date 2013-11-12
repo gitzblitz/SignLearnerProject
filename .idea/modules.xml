@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/SignLearner/SignLearner.iml" filepath="$PROJECT_DIR$/SignLearner/SignLearner.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SignLearnerProject.iml" filepath="$PROJECT_DIR$/SignLearnerProject.iml" />
+    </modules>
+  </component>
+</project>
+

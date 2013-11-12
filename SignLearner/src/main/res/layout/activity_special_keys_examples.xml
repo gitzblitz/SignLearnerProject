@@ -3,55 +3,49 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SpecialKeysIntro2"
+    tools:context=".SpecialKeysExamples"
     tools:ignore="MergeRootFrame" >
 
     <VideoView
         android:layout_width="wrap_content"
-        android:layout_height="313dp"
-        android:id="@+id/videoViewSP2"
+        android:layout_height="299dp"
+        android:id="@+id/videoViewSPExamples"
         android:layout_gravity="center_horizontal|top" />
 
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
 
-        <MediaController
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true"
-            android:id="@+id/mediaController" />
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Special Keys Examples"
+            android:id="@+id/textViewSPExamples"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="23dp"
+            android:layout_marginBottom="172dp" />
 
         <Button
             style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Back"
-            android:id="@+id/BtnBack"
-            android:layout_marginLeft="31dp"
-            android:layout_marginBottom="43dp"
+            android:id="@+id/btnSPExamplesBack"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true" />
+            android:layout_alignLeft="@+id/textViewSPExamples"
+            android:layout_marginBottom="50dp" />
 
         <Button
             style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Next"
-            android:id="@+id/BtnNext"
-            android:layout_alignTop="@+id/BtnBack"
+            android:id="@+id/btnSPExamplesNext"
+            android:layout_alignTop="@+id/btnSPExamplesBack"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="33dp" />
+            android:layout_marginRight="22dp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Introduction 2"
-            android:id="@+id/textView"
-            android:layout_marginTop="63dp"
-            android:layout_below="@+id/mediaController"
-            android:layout_alignLeft="@+id/BtnBack" />
     </RelativeLayout>
 </FrameLayout>

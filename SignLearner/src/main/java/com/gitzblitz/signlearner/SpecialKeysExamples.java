@@ -20,7 +20,7 @@ import android.widget.VideoView;
 
 import java.io.File;
 
-public class SpecialKeysIntro2 extends Activity {
+public class SpecialKeysExamples extends Activity {
 
     private VideoView vid;
     Button back;
@@ -29,26 +29,25 @@ public class SpecialKeysIntro2 extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_special_keys_intro2);
+        setContentView(R.layout.activity_special_keys_examples);
 
        /* if (savedInstanceState == null) {
             getFragmentManager().beginTransaction()
                     .add(R.id.container, new PlaceholderFragment())
                     .commit();
         }*/
-        onBackPressed();
-        back = (Button)findViewById(R.id.BtnBack);
-        next = (Button)findViewById(R.id.BtnNext);
 
-        /* Load the video from file*/
+        back = (Button)findViewById(R.id.btnSPExamplesBack);
+        next = (Button)findViewById(R.id.btnSPExamplesNext);
 
+//        Initialise the video
 
-        File clip = new File(Environment.getExternalStorageDirectory(),"/SignLearner/O4/Special_Keys_intro_2.mp4");
+        File clip = new File(Environment.getExternalStorageDirectory(),"/SignLearner/O4/Special_Keys_examples.mp4");
 
 
         if(clip.exists()){
 
-            vid = (VideoView)findViewById(R.id.videoViewSP2);
+            vid = (VideoView)findViewById(R.id.videoViewSPExamples);
             MediaController media = new MediaController(this);
             media.setAnchorView(vid);
             vid.setMediaController(media);
@@ -56,14 +55,12 @@ public class SpecialKeysIntro2 extends Activity {
             vid.requestFocus();
             vid.start();
             Toast.makeText(this, "Starting video", Toast.LENGTH_SHORT).show();
-            Log.i("tag", clip.getAbsolutePath());
+//            Log.i("tag", clip.getAbsolutePath());
         }
         else{
 
             Toast.makeText(this, clip.getAbsolutePath()+" cannot be found", Toast.LENGTH_LONG).show();
         }
-
-
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,10 +72,10 @@ public class SpecialKeysIntro2 extends Activity {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 goNext();
             }
         });
+
     }
 
 
@@ -86,7 +83,7 @@ public class SpecialKeysIntro2 extends Activity {
     public boolean onCreateOptionsMenu(Menu menu) {
         
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.special_keys_intro2, menu);
+        getMenuInflater().inflate(R.menu.special_keys_examples, menu);
         return true;
     }
 
@@ -102,6 +99,23 @@ public class SpecialKeysIntro2 extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
+
+    /*Functions to implement button*/
+
+    private void goBack() {
+        Intent i = new Intent(this,SpecialKeysIntro2.class);
+        startActivity(i);
+
+    }
+
+    private void goNext(){
+        Toast.makeText(this,"Next button clicked", Toast.LENGTH_LONG).show();
+//        Intent i = new Intent(this,SpecialKeysExamples.class);
+//        startActivity(i);
+    }
+
+
+
     /**
      * A placeholder fragment containing a simple view.
      */
@@ -113,34 +127,11 @@ public class SpecialKeysIntro2 extends Activity {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_special_keys_intro2, container, false);
+            View rootView = inflater.inflate(R.layout.fragment_special_keys_examples, container, false);
             return rootView;
         }
     }*/
 
 
-    /*Implementation of the buttons*/
-    private void goBack()
-    {
-        Intent i = new Intent(this,SpecialKeysIntro.class);
-        startActivity(i);
-        Toast.makeText(this,"Back button pressed ", Toast.LENGTH_LONG).show();
-    }
-
-
-    private void goNext(){
-        Intent i = new Intent(this,SpecialKeysExamples.class);
-
-        startActivity(i);
-         Toast.makeText(this,"Next button pressed ", Toast.LENGTH_LONG).show();
-    }
-
-    /**
-     * A placeholder fragment containing a simple view.
-     */
-    @Override
-    public void onBackPressed() {
-        return;
-    }
 
 }

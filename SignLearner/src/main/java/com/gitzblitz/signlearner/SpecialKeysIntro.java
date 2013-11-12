@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
@@ -20,7 +21,7 @@ import android.widget.VideoView;
 
 import java.io.File;
 
-public class SpecialKeysIntro2 extends Activity {
+public class SpecialKeysIntro extends Activity {
 
     private VideoView vid;
     Button back;
@@ -29,26 +30,18 @@ public class SpecialKeysIntro2 extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_special_keys_intro2);
+        setContentView(R.layout.specialkeys_intro);
 
-       /* if (savedInstanceState == null) {
-            getFragmentManager().beginTransaction()
-                    .add(R.id.container, new PlaceholderFragment())
-                    .commit();
-        }*/
         onBackPressed();
-        back = (Button)findViewById(R.id.BtnBack);
-        next = (Button)findViewById(R.id.BtnNext);
+        back = (Button)findViewById(R.id.btnBack);
+        next = (Button)findViewById(R.id.btnNext);
 
-        /* Load the video from file*/
-
-
-        File clip = new File(Environment.getExternalStorageDirectory(),"/SignLearner/O4/Special_Keys_intro_2.mp4");
+       File clip = new File(Environment.getExternalStorageDirectory(),"/SignLearner/O4/Special_keys_introduction.mp4");
 
 
         if(clip.exists()){
 
-            vid = (VideoView)findViewById(R.id.videoViewSP2);
+            vid = (VideoView)findViewById(R.id.videoView);
             MediaController media = new MediaController(this);
             media.setAnchorView(vid);
             vid.setMediaController(media);
@@ -57,13 +50,13 @@ public class SpecialKeysIntro2 extends Activity {
             vid.start();
             Toast.makeText(this, "Starting video", Toast.LENGTH_SHORT).show();
             Log.i("tag", clip.getAbsolutePath());
-        }
+          }
         else{
 
             Toast.makeText(this, clip.getAbsolutePath()+" cannot be found", Toast.LENGTH_LONG).show();
         }
 
-
+       // listener on defined back button on the layout
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,10 +68,11 @@ public class SpecialKeysIntro2 extends Activity {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 goNext();
             }
         });
+
+
     }
 
 
@@ -86,7 +80,7 @@ public class SpecialKeysIntro2 extends Activity {
     public boolean onCreateOptionsMenu(Menu menu) {
         
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.special_keys_intro2, menu);
+        getMenuInflater().inflate(R.menu.special_keys_intro, menu);
         return true;
     }
 
@@ -95,44 +89,21 @@ public class SpecialKeysIntro2 extends Activity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
-    /**
-     * A placeholder fragment containing a simple view.
-     */
-   /* public static class PlaceholderFragment extends Fragment {
-
-        public PlaceholderFragment() {
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_special_keys_intro2, container, false);
-            return rootView;
-        }
-    }*/
-
-
-    /*Implementation of the buttons*/
-    private void goBack()
-    {
-        Intent i = new Intent(this,SpecialKeysIntro.class);
+    private void goBack(){
+        Intent i = new Intent(this, UnitList.class);
         startActivity(i);
-        Toast.makeText(this,"Back button pressed ", Toast.LENGTH_LONG).show();
     }
 
-
     private void goNext(){
-        Intent i = new Intent(this,SpecialKeysExamples.class);
-
+        Intent i = new Intent(this,SpecialKeysIntro2.class);
         startActivity(i);
-         Toast.makeText(this,"Next button pressed ", Toast.LENGTH_LONG).show();
     }
 
     /**
@@ -142,5 +113,4 @@ public class SpecialKeysIntro2 extends Activity {
     public void onBackPressed() {
         return;
     }
-
 }

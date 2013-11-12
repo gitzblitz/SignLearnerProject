@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Sign Learner</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_unit_list">Units</string>
+    <string name="title_activity_special_keys_intro">Special Keys</string>
+    <string name="title_activity_splash_screen">Sign Learner</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">Sign\nLearner</string>
+    <string name="title_activity_special_keys_intro2">Special Keys</string>
+    <string name="title_activity_special_keys_examples">SpecialKeysExamples</string>
+    <string name="title_activity_lesson_list">Lessons</string>
+
+</resources>
