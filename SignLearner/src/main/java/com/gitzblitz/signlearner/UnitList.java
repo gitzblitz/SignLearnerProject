@@ -3,6 +3,7 @@ package com.gitzblitz.signlearner;
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
+import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Vibrator;
@@ -12,14 +13,17 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.os.Build;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Toast;
 
-public class UnitList extends Activity {
+import java.util.List;
 
-    Button home;
-    Button unit1;
-  //  private Vibrator vib;
+public class UnitList extends ListActivity {
+
+//    Button home;
+//    Button unit1;
+//  private Vibrator vib;
 
 
     @Override
@@ -27,42 +31,45 @@ public class UnitList extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.units_list);
 
-//        if (savedInstanceState == null) {
-//            getFragmentManager().beginTransaction()
-//                    .add(R.id.container, new PlaceholderFragment())
-//                    .commit();
-//        }
+        UnitsPullParser parser = new UnitsPullParser();
+        List<Units> units = parser.getUnitsFromFile(this);
+
+        ArrayAdapter<Units> adapter = new ArrayAdapter<Units>(this,android.R.layout.simple_list_item_1,units);
+
+        setListAdapter(adapter);
+
+
 
       //  vib = (Vibrator) this.getSystemService(VIBRATOR_SERVICE);
-        home = (Button) findViewById(R.id.btnHome);
-        unit1 = (Button)findViewById(R.id.btnUnit1);
+//        home = (Button) findViewById(R.id.btnHome);
+//        unit1 = (Button)findViewById(R.id.btnUnit1);
+//
+//        home.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//             //   vib.vibrate(100);
+//                // method call to go back to home
+//                goHome();
+//            }
+//        });
 
-        home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-             //   vib.vibrate(100);
-                // method call to go back to home
-                goHome();
-            }
-        });
-
-        unit1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                goITBasics();
-            }
-        });
+//        unit1.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                goITBasics();
+//            }
+//        });
     }
 
     private void goHome(){
         Intent i = new Intent(this,MainActivity.class);
         startActivity(i);
     }
-    private void goITBasics(){
-     /*   Intent i = new Intent(this,SpecialKeysIntro.class);
-        startActivity(i);*/
-        Toast.makeText(this, "Unit 1 - IT Basics button pressed", Toast.LENGTH_SHORT).show();
-    }
+//    private void goITBasics(){
+//     /*   Intent i = new Intent(this,SpecialKeysIntro.class);
+//        startActivity(i);*/
+//        Toast.makeText(this, "Unit 1 - IT Basics button pressed", Toast.LENGTH_SHORT).show();
+//    }
 
 
     @Override
@@ -102,8 +109,8 @@ public class UnitList extends Activity {
 //    }
 
 
-    @Override
-    public void onBackPressed() {
-        return;
-    }
+//    @Override
+//    public void onBackPressed() {
+//        return;
+//    }
 }

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<signsupport>
+	
+	<unit>
+		<unitTitle>I.T. Basics</unitTitle>
+		<unitId>1</unitId>
+	</unit>
+
+	<unit>
+		<unitTitle>Files and folders</unitTitle>
+		<unitId>2</unitId>
+	</unit>
+
+	<unit>
+		<unitTitle>Drawing</unitTitle>
+		<unitId>3</unitId>
+	</unit>
+
+	<unit>
+		<unitTitle>Word processing</unitTitle>
+		<unitId>4</unitId>
+	</unit>
+
+	<unit>
+		<unitTitle>Presentations</unitTitle>
+		<unitId>5</unitId>
+	</unit>
+
+	<unit>
+		<unitTitle>Spreadsheets</unitTitle>
+		<unitId>6</unitId>
+	</unit>
+
+	<unit>
+		<unitTitle>Email and web browsing</unitTitle>
+		<unitId>7</unitId>
+	</unit>
+
+</signsupport>

@@ -58,10 +58,6 @@ public class Downloader {
 
                 Log.d(myTag,"download ready in" + ((System.currentTimeMillis()- startTime)) + " milisec");
 
-
-
-
-
         }catch (IOException e){
             Log.d(myTag, "Error: " + e);
         }

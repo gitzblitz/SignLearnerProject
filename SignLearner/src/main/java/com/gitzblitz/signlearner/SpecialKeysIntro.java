@@ -75,6 +75,22 @@ public class SpecialKeysIntro extends Activity {
 
     }
 
+    public boolean checkExternalStorage()
+    {
+        String state = Environment.getExternalStorageState();
+
+        if (state.equals(Environment.MEDIA_MOUNTED)){
+            return true;
+
+        } else if(state.equals(Environment.MEDIA_MOUNTED_READ_ONLY)){
+            Toast.makeText(this, "External storage is read-only", Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(this, "External storage is unavailable", Toast.LENGTH_LONG).show();
+        }
+
+        return false;
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

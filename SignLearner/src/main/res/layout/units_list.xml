@@ -3,41 +3,19 @@
     android:layout_height="fill_parent"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <TextView
+    <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Units"
-        android:id="@+id/textView"
+        android:id="@android:id/list"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="18dp" />
+        android:layout_alignParentLeft="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="IT Basics"
-        android:id="@+id/textView2"
-        android:layout_marginTop="26dp"
-        android:layout_below="@+id/textView"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="26dp" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="1"
-        android:id="@+id/btnUnit1"
-        android:layout_alignTop="@+id/textView2"
-        android:layout_toRightOf="@+id/textView" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Home"
-        android:id="@+id/btnHome"
+        android:id="@+id/textView1"
         android:layout_alignParentBottom="true"
-        android:layout_alignLeft="@+id/textView2"
-        android:layout_marginBottom="24dp" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true" />
 </RelativeLayout>
