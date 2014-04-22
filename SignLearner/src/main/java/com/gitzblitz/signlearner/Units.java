@@ -1,6 +1,7 @@
 package com.gitzblitz.signlearner;
 
 
+import android.util.Log;
 
 /**
  * Created by George Ng'ethe on 2013/10/31.
@@ -37,6 +38,8 @@ public class Units {
 
     @Override
     public String toString(){
-        return "Unit: "+ id + "\n Title: " + title;
+        return "Unit: "+ id + ": " + title;
     }
+
+
 }

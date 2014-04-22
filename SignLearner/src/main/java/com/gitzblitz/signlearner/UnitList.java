@@ -7,14 +7,18 @@ import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.os.Build;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.List;
@@ -25,6 +29,13 @@ public class UnitList extends ListActivity {
 //    Button unit1;
 //  private Vibrator vib;
 
+    private static final String LOGTAG = "SIGNLEARNER";
+//    UnitsPullParser parser = null;
+//    List<Units> units = null;
+//
+//    ListView list;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,13 +45,14 @@ public class UnitList extends ListActivity {
         UnitsPullParser parser = new UnitsPullParser();
         List<Units> units = parser.getUnitsFromFile(this);
 
+//        ArrayAdapter<Units> adapter = new ArrayAdapter<Units>(this,android.R.layout.simple_list_item_1,units);
         ArrayAdapter<Units> adapter = new ArrayAdapter<Units>(this,android.R.layout.simple_list_item_1,units);
-
         setListAdapter(adapter);
 
 
 
-      //  vib = (Vibrator) this.getSystemService(VIBRATOR_SERVICE);
+
+
 //        home = (Button) findViewById(R.id.btnHome);
 //        unit1 = (Button)findViewById(R.id.btnUnit1);
 //
@@ -60,6 +72,19 @@ public class UnitList extends ListActivity {
 //            }
 //        });
     }
+
+
+//    private void populateListView() {
+//
+//       parser = new UnitsPullParser();
+//
+//       units = parser.getUnitsFromFile(this);
+//
+//    //    ArrayAdapter<Units> adapter = new ArrayAdapter<Units>(this, R.layout.unit_list_item, units);
+//        ArrayAdapter<Units> adapter = new ArrayAdapter<Units>(this,android.R.layout.simple_list_item_1, units);
+//
+//        list.setAdapter(adapter);
+//    }
 
     private void goHome(){
         Intent i = new Intent(this,MainActivity.class);
@@ -95,22 +120,22 @@ public class UnitList extends ListActivity {
     /**
      * A placeholder fragment containing a simple view.
      */
-//    public static class PlaceholderFragment extends Fragment {
-//
-//        public PlaceholderFragment() {
-//        }
-//
-//        @Override
-//        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-//                Bundle savedInstanceState) {
-//            View rootView = inflater.inflate(R.layout.fragment_units, container, false);
-//            return rootView;
-//        }
-//    }
-
 
 //    @Override
 //    public void onBackPressed() {
 //        return;
 //    }
+
+
+    @Override
+    protected void onListItemClick(ListView l, View v, int position, long id) {
+        super.onListItemClick(l, v, position, id);
+       // String s = v.getContext().toString();
+        Units unit = (Units) l.getItemAtPosition(position);
+//        Toast.makeText(l.getContext(), ((TextView)v).getText(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(l.getContext(), unit.getTitle(), Toast.LENGTH_SHORT).show();
+
+        Log.i(LOGTAG,unit.getTitle());
+
+    }
 }
