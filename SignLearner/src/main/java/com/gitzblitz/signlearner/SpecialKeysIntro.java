@@ -113,7 +113,7 @@ public class SpecialKeysIntro extends Activity {
     }
 
     private void goBack(){
-        Intent i = new Intent(this, UnitList.class);
+        Intent i = new Intent(this, LessonList.class);
         startActivity(i);
     }
 

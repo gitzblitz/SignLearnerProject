@@ -2,12 +2,14 @@ package com.gitzblitz.signlearner;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.os.Environment;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -43,7 +45,10 @@ public class UnitsPullParser {
             XmlPullParser xpp = factory.newPullParser();
 
             // Open inputStream to read file
-            InputStream stream = context.getResources().openRawResource(R.raw.signsupport);
+            File file = new File(Environment.getExternalStorageDirectory(),"/SignLearner/Xml/signsupport.xml");
+
+//            InputStream stream = context.getResources().openRawResource(R.raw.signsupport);
+            InputStream stream = new FileInputStream(file.getAbsolutePath());
             xpp.setInput(stream, null);
 
 

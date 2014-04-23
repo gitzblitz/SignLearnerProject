@@ -44,8 +44,6 @@ public class UnitList extends ListActivity {
 
         UnitsPullParser parser = new UnitsPullParser();
         List<Units> units = parser.getUnitsFromFile(this);
-
-//        ArrayAdapter<Units> adapter = new ArrayAdapter<Units>(this,android.R.layout.simple_list_item_1,units);
         ArrayAdapter<Units> adapter = new ArrayAdapter<Units>(this,android.R.layout.simple_list_item_1,units);
         setListAdapter(adapter);
 
@@ -74,22 +72,12 @@ public class UnitList extends ListActivity {
     }
 
 
-//    private void populateListView() {
-//
-//       parser = new UnitsPullParser();
-//
-//       units = parser.getUnitsFromFile(this);
-//
-//    //    ArrayAdapter<Units> adapter = new ArrayAdapter<Units>(this, R.layout.unit_list_item, units);
-//        ArrayAdapter<Units> adapter = new ArrayAdapter<Units>(this,android.R.layout.simple_list_item_1, units);
-//
-//        list.setAdapter(adapter);
-//    }
 
-    private void goHome(){
-        Intent i = new Intent(this,MainActivity.class);
-        startActivity(i);
-    }
+
+//    private void goHome(){
+//        Intent i = new Intent(this,MainActivity.class);
+//        startActivity(i);
+//    }
 //    private void goITBasics(){
 //     /*   Intent i = new Intent(this,SpecialKeysIntro.class);
 //        startActivity(i);*/
@@ -121,10 +109,13 @@ public class UnitList extends ListActivity {
      * A placeholder fragment containing a simple view.
      */
 
-//    @Override
-//    public void onBackPressed() {
+    @Override
+    public void onBackPressed() {
 //        return;
-//    }
+
+        Intent i = new Intent(this,MainActivity.class);
+        startActivity(i);
+    }
 
 
     @Override
