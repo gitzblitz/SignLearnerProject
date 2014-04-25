@@ -12,5 +12,6 @@
     <string name="title_activity_special_keys_intro2">Special Keys</string>
     <string name="title_activity_special_keys_examples">SpecialKeysExamples</string>
     <string name="title_activity_lesson_list">Lessons</string>
+    <string name="title_activity_unit_one">UnitOne</string>
 
 </resources>

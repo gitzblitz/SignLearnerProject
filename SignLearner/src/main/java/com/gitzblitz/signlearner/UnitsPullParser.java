@@ -42,28 +42,29 @@ public class UnitsPullParser {
 
             XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
             factory.setNamespaceAware(true);
-            XmlPullParser xpp = factory.newPullParser();
+            XmlPullParser parser = factory.newPullParser();
 
             // Open inputStream to read file
             File file = new File(Environment.getExternalStorageDirectory(),"/SignLearner/Xml/signsupport.xml");
 
 //            InputStream stream = context.getResources().openRawResource(R.raw.signsupport);
             InputStream stream = new FileInputStream(file.getAbsolutePath());
-            xpp.setInput(stream, null);
+            parser.setInput(stream, null);
 
 
             //get initial eventType
-            int eventType = xpp.getEventType();
+            int eventType = parser.getEventType();
 
             while (eventType != XmlPullParser.END_DOCUMENT) {
                 if (eventType == XmlPullParser.START_TAG) {
-                    handleStartTag(xpp.getName());
+                    handleStartTag(parser.getName());
+//                    String attr = parser.getAttributeValue(null,"id");
                 } else if (eventType == XmlPullParser.END_TAG) {
                     currTag = null;
                 } else if (eventType == XmlPullParser.TEXT) {
-                    handleText(xpp.getText());
+                    handleText(parser.getText());
                 }
-                eventType = xpp.next();
+                eventType = parser.next();
             }
 
         } catch (Resources.NotFoundException e) {
@@ -92,7 +93,9 @@ public class UnitsPullParser {
 
 
     private void handleStartTag(String name) {
+
         if (name.equals("unit")) {
+
             currUnit = new Units();
             units.add(currUnit);
         } else {

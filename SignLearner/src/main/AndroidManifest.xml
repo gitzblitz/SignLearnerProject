@@ -52,6 +52,10 @@
             android:name="com.gitzblitz.signlearner.LessonList"
             android:label="@string/title_activity_lesson_list" >
         </activity>
+        <activity
+            android:name=".UnitLoaded"
+            android:label="@string/title_activity_unit_one" >
+        </activity>
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />

@@ -1,24 +1,14 @@
 package com.gitzblitz.signlearner;
 
-import android.app.Activity;
-import android.app.ActionBar;
-import android.app.Fragment;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Vibrator;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.os.Build;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.List;
@@ -29,7 +19,7 @@ public class UnitList extends ListActivity {
 //    Button unit1;
 //  private Vibrator vib;
 
-    private static final String LOGTAG = "SIGNLEARNER";
+    private static final String LOGTAG = "SIGNLEARNER_UNITLIST";
 //    UnitsPullParser parser = null;
 //    List<Units> units = null;
 //
@@ -124,9 +114,21 @@ public class UnitList extends ListActivity {
        // String s = v.getContext().toString();
         Units unit = (Units) l.getItemAtPosition(position);
 //        Toast.makeText(l.getContext(), ((TextView)v).getText(), Toast.LENGTH_SHORT).show();
-        Toast.makeText(l.getContext(), unit.getTitle(), Toast.LENGTH_SHORT).show();
 
-        Log.i(LOGTAG,unit.getTitle());
+        String unit_name_passed = unit.getTitle();
+
+        Toast.makeText(l.getContext(), unit_name_passed, Toast.LENGTH_SHORT).show();
+
+        Log.i(LOGTAG,unit_name_passed);
+
+        Bundle bundle = new Bundle();
+        bundle.putString("unit_title", unit_name_passed);
+        bundle.putInt("unit_id", unit.getId());
+
+        Intent intent = new Intent(this,UnitLoaded.class);
+        intent.putExtras(bundle);
+
+        startActivity(intent);
 
     }
 }
