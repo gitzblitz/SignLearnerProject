@@ -3,6 +3,9 @@ package com.gitzblitz.signlearner;
 
 import android.util.Log;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by George Ng'ethe on 2013/10/31.
  */
@@ -10,6 +13,7 @@ public class Units {
     private String title;
     private int id;
 //    private ArrayList<String> lessonIDs;
+    private List<String> lessonIDs = new ArrayList<String>();
 
 
     public String getTitle() {
@@ -28,13 +32,13 @@ public class Units {
         this.id = id;
     }
 
-//    public ArrayList<String> getLessonIDs() {
-//        return lessonIDs;
-//    }
-//
-//    public void setLessonIDs(ArrayList<String> lessonIDs) {
-//        this.lessonIDs = lessonIDs;
-//    }
+    public List<String> getLessonIDs() {
+        return lessonIDs;
+    }
+
+    public void setLessonIDs(List<String> lessonIDs) {
+        this.lessonIDs = lessonIDs;
+    }
 
     @Override
     public String toString(){
