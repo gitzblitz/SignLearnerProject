@@ -38,7 +38,7 @@ public class UnitsPullParser {
 
 
     public List<Units> units = new ArrayList<Units>();
-    public List<String> lessonIdList = new ArrayList<String>();
+    public ArrayList<String> lessonIdList = null;
 
 
     public List<Units> getUnitsFromFile(Context context) {
@@ -63,19 +63,6 @@ public class UnitsPullParser {
             //get initial eventType
             int eventType = parser.getEventType();
 
-//            while (eventType != XmlPullParser.END_DOCUMENT) {
-//                if (eventType == XmlPullParser.START_TAG) {
-//                    handleStartTag(parser.getName());
-////                    String attr = parser.getAttributeValue(null,"id");
-////                      String attr2 = parser.getAttributeValue(null,"title");
-//                } else if (eventType == XmlPullParser.END_TAG) {
-//                    currTag = null;
-//                } else if (eventType == XmlPullParser.TEXT) {
-//                    //get the id and the title from the
-//                    handleText(parser.getText());
-//                }
-//                eventType = parser.next();
-//            }
             while (eventType != XmlPullParser.END_DOCUMENT){
                 //get tag name
                 String tagname = parser.getName();
@@ -85,6 +72,7 @@ public class UnitsPullParser {
                         if(tagname.equalsIgnoreCase(KEY_UNIT)){
 
                             currUnit = new Units();
+                            lessonIdList = new ArrayList<String>();
                         }
                         break;
 
@@ -110,6 +98,7 @@ public class UnitsPullParser {
                         } else if (tagname.equalsIgnoreCase(KEY_LESSON)){
                             //add the list of all the lesson IDs to a list item
                             lessonIdList.add(currTag);
+//                            currUnit.setLessonIDs(lessonIdList);
                         }
 
                         break;
@@ -134,30 +123,6 @@ public class UnitsPullParser {
         return units;
     }
 
-//    private void handleText(String text) {
-//        String xmlText = text;
-//
-//        if (currUnit != null && currTag != null) {
-//            if (currTag.equals(UNIT_ID)) {
-//                Integer id = Integer.parseInt(xmlText);
-//                currUnit.setId(id);
-//            } else if (currTag.equals(UNIT_TITLE)) {
-//                currUnit.setTitle(xmlText);
-//            }
-//        }
-//    }
-//
-//
-//    private void handleStartTag(String name) {
-//
-//        if (name.equals("unit")) {
-//
-//            currUnit = new Units();
-//            units.add(currUnit);
-//        } else {
-//            currTag = name;
-//        }
-//    }
 
 
 }

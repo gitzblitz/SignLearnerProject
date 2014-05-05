@@ -13,7 +13,7 @@ public class Units {
     private String title;
     private int id;
 //    private ArrayList<String> lessonIDs;
-    private List<String> lessonIDs = new ArrayList<String>();
+    private ArrayList<String> lessonIDs = new ArrayList<String>();
 
 
     public String getTitle() {
@@ -32,11 +32,11 @@ public class Units {
         this.id = id;
     }
 
-    public List<String> getLessonIDs() {
+    public ArrayList<String> getLessonIDs() {
         return lessonIDs;
     }
 
-    public void setLessonIDs(List<String> lessonIDs) {
+    public void setLessonIDs(ArrayList<String> lessonIDs) {
         this.lessonIDs = lessonIDs;
     }
 

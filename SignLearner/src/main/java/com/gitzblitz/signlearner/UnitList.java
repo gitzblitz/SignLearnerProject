@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class UnitList extends ListActivity {
@@ -21,7 +22,7 @@ public class UnitList extends ListActivity {
 
     private static final String LOGTAG = "SIGNLEARNER_UNITLIST";
 //    UnitsPullParser parser = null;
-//    List<Units> units = null;
+    public ArrayList<String> lessons = null;
 //
 //    ListView list;
 
@@ -116,18 +117,24 @@ public class UnitList extends ListActivity {
 //        Toast.makeText(l.getContext(), ((TextView)v).getText(), Toast.LENGTH_SHORT).show();
 
         String unit_name_passed = unit.getTitle();
+        lessons = unit.getLessonIDs();
 
-        Toast.makeText(l.getContext(), unit_name_passed, Toast.LENGTH_SHORT).show();
+//        for(int i=0; i< lessons.size(); i++){
+//            Log.i("Lesson ID " , unit_name_passed + " has " + lessons.get(i));
+//        }
 
-        Log.i(LOGTAG,unit_name_passed);
+//        Toast.makeText(l.getContext(), unit_name_passed, Toast.LENGTH_SHORT).show();
+
+//        Log.i(LOGTAG,unit_name_passed);
 
         Bundle bundle = new Bundle();
         bundle.putString("unit_title", unit_name_passed);
         bundle.putInt("unit_id", unit.getId());
+        bundle.putStringArrayList("lessonIDs", lessons);
 
         Intent intent = new Intent(this,UnitLoaded.class);
         intent.putExtras(bundle);
-
+//        startActivityForResult(intent,0);
         startActivity(intent);
 
     }

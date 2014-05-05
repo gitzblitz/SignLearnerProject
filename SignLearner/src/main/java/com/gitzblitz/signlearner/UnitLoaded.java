@@ -6,18 +6,24 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 
 
 public class UnitLoaded extends Activity {
 
-    private static final String LOGTAG = "SIGNLEARNER_UNITONE";
+    private static final String LOGTAG = "SIGNLEARNER_UNITLOADED";
+    private ListView lv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_unit_loaded);
 
+        lv = (ListView)findViewById(R.id.unitLoadedListview);
         //
         Intent i = getIntent();
 
@@ -25,16 +31,23 @@ public class UnitLoaded extends Activity {
 
         String unit_title = bundle.getString("unit_title");
         int unit_id = bundle.getInt("unit_id");
+        ArrayList<String> lessons = bundle.getStringArrayList("lessonIDs");
         setTitle(unit_title);
 
 //        getActionBar().setHomeButtonEnabled(true);
 //        getActionBar().setDisplayHomeAsUpEnabled(true);
 
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,lessons);
+        lv.setAdapter(arrayAdapter);
+
+//        Log.i(LOGTAG, unit_title);
+
+        for(int k=0; k< lessons.size(); k++){
+            Log.i(LOGTAG , unit_title + " has " + lessons.get(k));
+        }
 
 
-        Log.i(LOGTAG, unit_title);
-
-        Toast.makeText(this, unit_title + " " + unit_id, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, unit_title + " ID: " + unit_id, Toast.LENGTH_SHORT).show();
 
 
 
