@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -36,22 +38,30 @@ public class UnitLoaded extends Activity {
 
 //        getActionBar().setHomeButtonEnabled(true);
 //        getActionBar().setDisplayHomeAsUpEnabled(true);
+        Toast.makeText(this, unit_title + " ID: " + unit_id, Toast.LENGTH_SHORT).show();
 
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,lessons);
         lv.setAdapter(arrayAdapter);
 
 //        Log.i(LOGTAG, unit_title);
 
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String id = (String) adapterView.getItemAtPosition(i);
+
+                Toast.makeText(adapterView.getContext(), id, Toast.LENGTH_SHORT).show();
+            }
+        });
+
         for(int k=0; k< lessons.size(); k++){
             Log.i(LOGTAG , unit_title + " has " + lessons.get(k));
         }
 
 
-        Toast.makeText(this, unit_title + " ID: " + unit_id, Toast.LENGTH_SHORT).show();
 
 
 
-//        System.out.println(unit_title);
     }
 
 
