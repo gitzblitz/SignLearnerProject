@@ -20,6 +20,7 @@ public class UnitLoaded extends Activity {
     private static final String LOGTAG = "SIGNLEARNER_UNITLOADED";
     private ListView lv;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,10 +35,10 @@ public class UnitLoaded extends Activity {
         String unit_title = bundle.getString("unit_title");
         int unit_id = bundle.getInt("unit_id");
         ArrayList<String> lessons = bundle.getStringArrayList("lessonIDs");
+
+        // set title of activity
         setTitle(unit_title);
 
-//        getActionBar().setHomeButtonEnabled(true);
-//        getActionBar().setDisplayHomeAsUpEnabled(true);
         Toast.makeText(this, unit_title + " ID: " + unit_id, Toast.LENGTH_SHORT).show();
 
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,lessons);
@@ -48,9 +49,11 @@ public class UnitLoaded extends Activity {
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                String id = (String) adapterView.getItemAtPosition(i);
+              String  id = (String) adapterView.getItemAtPosition(i);
 
                 Toast.makeText(adapterView.getContext(), id, Toast.LENGTH_SHORT).show();
+
+                   loadLessons(id);
             }
         });
 
@@ -62,6 +65,17 @@ public class UnitLoaded extends Activity {
 
 
 
+    }
+
+    private void loadLessons(String id) {
+        Bundle bundle = new Bundle();
+        bundle.putString("lessonID", id);
+
+        Intent intent1 = new Intent(this,LessonLoaded.class);
+
+        intent1.putExtras(bundle);
+
+        startActivityForResult(intent1, 0);
     }
 
 

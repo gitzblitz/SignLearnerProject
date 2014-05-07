@@ -53,8 +53,12 @@
             android:label="@string/title_activity_lesson_list" >
         </activity>
         <activity
-            android:name=".UnitLoaded"
+            android:name="com.gitzblitz.signlearner.UnitLoaded"
             android:label="@string/title_activity_unit_one" >
+        </activity>
+        <activity
+            android:name="com.gitzblitz.signlearner.LessonLoaded"
+            android:label="@string/title_activity_lesson_loaded" >
         </activity>
     </application>
 
