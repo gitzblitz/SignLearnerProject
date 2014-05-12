@@ -52,7 +52,7 @@ public class UnitsPullParser {
 
             // Open inputStream to read file
 //            File file = new File(Environment.getExternalStorageDirectory(),"/SignLearner/Xml/signsupport.xml");
-            File file = new File(Environment.getExternalStorageDirectory(),"/SignLearner/Xml/signsupportv3.xml");
+            File file = new File(Environment.getExternalStorageDirectory(),"/SignSupport/icdl/xml/signsupportv3.xml");
 
 
 //            InputStream stream = context.getResources().openRawResource(R.raw.signsupport);

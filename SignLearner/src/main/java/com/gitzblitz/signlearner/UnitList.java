@@ -38,42 +38,7 @@ public class UnitList extends ListActivity {
         ArrayAdapter<Units> adapter = new ArrayAdapter<Units>(this,android.R.layout.simple_list_item_1,units);
         setListAdapter(adapter);
 
-
-
-
-
-//        home = (Button) findViewById(R.id.btnHome);
-//        unit1 = (Button)findViewById(R.id.btnUnit1);
-//
-//        home.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//             //   vib.vibrate(100);
-//                // method call to go back to home
-//                goHome();
-//            }
-//        });
-
-//        unit1.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                goITBasics();
-//            }
-//        });
     }
-
-
-
-
-//    private void goHome(){
-//        Intent i = new Intent(this,MainActivity.class);
-//        startActivity(i);
-//    }
-//    private void goITBasics(){
-//     /*   Intent i = new Intent(this,SpecialKeysIntro.class);
-//        startActivity(i);*/
-//        Toast.makeText(this, "Unit 1 - IT Basics button pressed", Toast.LENGTH_SHORT).show();
-//    }
 
 
     @Override
@@ -119,9 +84,9 @@ public class UnitList extends ListActivity {
         String unit_name_passed = unit.getTitle();
         lessons = unit.getLessonIDs();
 
-//        for(int i=0; i< lessons.size(); i++){
-//            Log.i("Lesson ID " , unit_name_passed + " has " + lessons.get(i));
-//        }
+        for(int i=0; i< lessons.size(); i++){
+            Log.i("Lesson ID " , unit_name_passed + " has " + lessons.get(i));
+        }
 
 //        Toast.makeText(l.getContext(), unit_name_passed, Toast.LENGTH_SHORT).show();
 

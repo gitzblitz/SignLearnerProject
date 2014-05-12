@@ -60,6 +60,10 @@
             android:name="com.gitzblitz.signlearner.LessonLoaded"
             android:label="@string/title_activity_lesson_loaded" >
         </activity>
+        <activity
+            android:name="com.gitzblitz.signlearner.LessonDetail"
+            android:label="@string/title_activity_lesson_detail" >
+        </activity>
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />

@@ -16,5 +16,6 @@
     <string name="unit_loaded_title">Please select a lesson</string>
     <string name="title_activity_lesson_loaded">LessonLoaded</string>
     <string name="label_lesson_loaded">Please select an item</string>
+    <string name="title_activity_lesson_detail">LessonDetail</string>
 
 </resources>

@@ -1,14 +1,28 @@
 package com.gitzblitz.signlearner;
 
 import android.app.Activity;
+import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
 
 
-public class LessonLoaded extends Activity {
+public class LessonLoaded extends ListActivity {
+
+    private static final String LOGTAG = "SIGNLEARNER_LESSONLOADED";
+    String screen_title = null;
+    ArrayList<Screen> screens = null;
+    private int counter = 0;
 
 
 
@@ -17,7 +31,8 @@ public class LessonLoaded extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lesson_loaded);
 
-//        textView = (TextView)findViewById(R.id.textView);
+//        listView = (ListView)findViewById(R.id.LessonLoadedlistView);
+
 
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
@@ -25,11 +40,48 @@ public class LessonLoaded extends Activity {
 
         setTitle(lessonID);
 
-//        textView.setText("The lesson ID is " + lessonID);
+        /*Instantiate the parser and the */
+        ScreenPullParser screenPullParser = new ScreenPullParser();
+        screens = screenPullParser.parseXML(this,lessonID);
 
-        // pass lesson ID to the XML parser parsing the lessons.
+        ArrayAdapter<Screen> adapter= new ArrayAdapter<Screen>(this,android.R.layout.simple_list_item_1,screens);
+        setListAdapter(adapter);
+
+//        // set up the adapter
+//        ArrayAdapter<Screen> adapter = new ArrayAdapter<Screen>(this, android.R.layout.simple_list_item_1,screens);
+//        listView.setAdapter(adapter);
+//
+//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//
+//            }
+//        });
+
+//
     }
 
+    @Override
+    protected void onListItemClick(ListView l, View v, int position, long id) {
+        super.onListItemClick(l, v, position, id);
+        Screen s = (Screen) this.getListAdapter().getItem(position);
+        screen_title = s.toString();
+        /*Toast to display the correct item is retrieved when clicked*/
+        Toast.makeText(this,screen_title,Toast.LENGTH_SHORT).show();
+
+        /*bundle to transfer data to the next activity*/
+        Bundle bundle = new Bundle();
+        bundle.putInt("position",position);
+        bundle.putParcelable("screen", s);
+        bundle.putParcelableArrayList("listOfScreens", screens);
+
+        Intent intent = new Intent(this,LessonDetail.class);
+        intent.putExtras(bundle);
+        Log.i(LOGTAG, "intent loaded");
+        startActivity(intent);
+
+
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
