@@ -44,7 +44,6 @@ public class UnitLoaded extends Activity {
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,lessons);
         lv.setAdapter(arrayAdapter);
 
-//        Log.i(LOGTAG, unit_title);
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -57,12 +56,9 @@ public class UnitLoaded extends Activity {
             }
         });
 
-        for(int k=0; k< lessons.size(); k++){
-            Log.i(LOGTAG , unit_title + " has " + lessons.get(k));
-        }
-
-
-
+//        for(int k=0; k< lessons.size(); k++){
+//            Log.i(LOGTAG , unit_title + " has " + lessons.get(k));
+//        }
 
 
     }
