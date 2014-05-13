@@ -3,42 +3,11 @@
     android:layout_height="fill_parent"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <TextView
+    <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Lessons"
-        android:id="@+id/txtViewLessonsList"
+        android:id="@android:id/list"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Special Keys"
-        android:id="@+id/txtViewSPkeys"
-        android:layout_below="@+id/txtViewLessonsList"
-        android:layout_toLeftOf="@+id/txtViewLessonsList"
-        android:layout_marginRight="25dp"
-        android:layout_marginTop="31dp" />
-
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="O4"
-        android:id="@+id/btnSpecialKeys"
-        android:layout_alignTop="@+id/txtViewSPkeys"
-        android:layout_toRightOf="@+id/txtViewLessonsList" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Home"
-        android:id="@+id/btnGoHomeLessons"
-        android:layout_marginBottom="31dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignLeft="@+id/txtViewSPkeys" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 </RelativeLayout>

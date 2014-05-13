@@ -84,9 +84,9 @@ public class UnitList extends ListActivity {
         String unit_name_passed = unit.getTitle();
         lessons = unit.getLessonIDs();
 
-        for(int i=0; i< lessons.size(); i++){
-            Log.i("Lesson ID " , unit_name_passed + " has " + lessons.get(i));
-        }
+//        for(int i=0; i< lessons.size(); i++){
+//            Log.i("Lesson ID " , unit_name_passed + " has " + lessons.get(i));
+//        }
 
 //        Toast.makeText(l.getContext(), unit_name_passed, Toast.LENGTH_SHORT).show();
 

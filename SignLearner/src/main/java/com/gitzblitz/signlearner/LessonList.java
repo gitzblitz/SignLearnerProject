@@ -3,52 +3,66 @@ package com.gitzblitz.signlearner;
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
+import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.os.Build;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 
-public class LessonList extends Activity {
+import java.util.ArrayList;
 
-    Button goHome;
-    Button specialKeysLessons;
+public class LessonList extends ListActivity {
+
+    private static final String LOGTAG = "SIGNLEARNER_LESSONLIST";
+    String lesson_title = null;
+    ArrayList<Lesson> lessons = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lesson_list);
 
+        LessonPullParser pullParser = new LessonPullParser();
+        lessons = pullParser.parseXML(this);
 
-       /* if (savedInstanceState == null) {
-            getFragmentManager().beginTransaction()
-                    .add(R.id.container, new PlaceholderFragment())
-                    .commit();
-        }*/
-
-        goHome = (Button)findViewById(R.id.btnGoHomeLessons);
-        specialKeysLessons = (Button)findViewById(R.id.btnSpecialKeys);
+        setTitle("Lessons");
 
 
-        goHome.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                navigateHomefromLessonList();
-            }
-        });
+        ArrayAdapter<Lesson> arrayAdapter = new ArrayAdapter<Lesson>(this, android.R.layout.simple_list_item_1,lessons);
+        setListAdapter(arrayAdapter);
 
-        specialKeysLessons.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                goToSpecialKeysLesson();
-            }
-        });
+
     }
 
+    @Override
+    protected void onListItemClick(ListView l, View v, int position, long id) {
+        super.onListItemClick(l, v, position, id);
+
+        Lesson lesson = (Lesson) this.getListAdapter().getItem(position);
+
+        lesson_title = lesson.getTitle();
+
+        String lessonId = lesson.getId();
+
+        Log.d(LOGTAG, "lesson id: "+ lessonId + " lesson title " + lesson_title);
+
+        Bundle b = new Bundle();
+        b.putString("lessonID", lessonId);
+
+        Intent intent = new Intent(this, LessonLoaded.class);
+        intent.putExtras(b);
+
+        startActivity(intent);
+
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -71,16 +85,6 @@ public class LessonList extends Activity {
     }
 
     /*Functions for buttons*/
-
-    private void navigateHomefromLessonList(){
-        Intent i = new Intent(this,MainActivity.class);
-        startActivity(i);
-    }
-
-    private void goToSpecialKeysLesson(){
-        Intent i = new Intent(this, SpecialKeysIntro.class);
-        startActivity(i);
-    }
 
     /**
      * A placeholder fragment containing a simple view.

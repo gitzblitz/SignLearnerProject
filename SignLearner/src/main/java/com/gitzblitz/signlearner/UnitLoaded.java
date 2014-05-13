@@ -39,7 +39,7 @@ public class UnitLoaded extends Activity {
         // set title of activity
         setTitle(unit_title);
 
-        Toast.makeText(this, unit_title + " ID: " + unit_id, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, unit_title + " ID: " + unit_id, Toast.LENGTH_SHORT).show();
 
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,lessons);
         lv.setAdapter(arrayAdapter);
@@ -50,7 +50,7 @@ public class UnitLoaded extends Activity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
               String  id = (String) adapterView.getItemAtPosition(i);
 
-                Toast.makeText(adapterView.getContext(), id, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(adapterView.getContext(), id, Toast.LENGTH_SHORT).show();
 
                    loadLessons(id);
             }

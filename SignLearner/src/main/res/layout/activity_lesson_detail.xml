@@ -40,11 +40,11 @@
             android:layout_height="wrap_content"
             android:text="New Text"
             android:id="@+id/vidCaptiontextView"
-            android:layout_marginBottom="74dp"
+            android:layout_marginBottom="73dp"
             android:textSize="18sp"
             android:layout_above="@+id/screenImageView"
-            android:layout_alignRight="@+id/buttonBack"
-            android:layout_alignEnd="@+id/buttonBack" />
+            android:layout_alignLeft="@+id/buttonBack"
+            android:layout_alignStart="@+id/buttonBack" />
 
         <ImageView
             android:layout_width="wrap_content"

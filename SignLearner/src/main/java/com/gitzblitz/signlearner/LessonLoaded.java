@@ -43,9 +43,17 @@ public class LessonLoaded extends ListActivity {
         /*Instantiate the parser and the */
         ScreenPullParser screenPullParser = new ScreenPullParser();
         screens = screenPullParser.parseXML(this,lessonID);
+        Log.d(LOGTAG, "List size = "+Integer.toString(screens.size()));
 
-        ArrayAdapter<Screen> adapter= new ArrayAdapter<Screen>(this,android.R.layout.simple_list_item_1,screens);
-        setListAdapter(adapter);
+        if(screens.size() != 0){
+            ArrayAdapter<Screen> adapter= new ArrayAdapter<Screen>(this,android.R.layout.simple_list_item_1,screens);
+            setListAdapter(adapter);
+        }else {
+            Toast.makeText(this,"No lesson found",Toast.LENGTH_SHORT).show();
+            finish();
+        }
+
+
 
 //        // set up the adapter
 //        ArrayAdapter<Screen> adapter = new ArrayAdapter<Screen>(this, android.R.layout.simple_list_item_1,screens);
@@ -67,7 +75,7 @@ public class LessonLoaded extends ListActivity {
         Screen s = (Screen) this.getListAdapter().getItem(position);
         screen_title = s.toString();
         /*Toast to display the correct item is retrieved when clicked*/
-        Toast.makeText(this,screen_title,Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this,screen_title,Toast.LENGTH_SHORT).show();
 
         /*bundle to transfer data to the next activity*/
         Bundle bundle = new Bundle();
