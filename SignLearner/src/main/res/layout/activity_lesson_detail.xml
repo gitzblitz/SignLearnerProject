@@ -11,7 +11,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="211dp"
+        android:layout_gravity="center_horizontal|bottom">
 
         <Button
             android:layout_width="wrap_content"
@@ -47,13 +48,18 @@
             android:layout_alignStart="@+id/buttonBack" />
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
             android:id="@+id/screenImageView"
             android:layout_above="@+id/buttonBack"
-            android:layout_centerHorizontal="true"
             android:layout_marginBottom="48dp"
-            />
+            android:maxHeight="500dp"
+            android:maxWidth="400dp"
+            android:scaleType="fitCenter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignRight="@+id/buttonNext"
+            android:layout_alignEnd="@+id/buttonNext" />
     </RelativeLayout>
 
 </FrameLayout>

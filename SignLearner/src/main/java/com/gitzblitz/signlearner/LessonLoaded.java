@@ -1,5 +1,6 @@
 package com.gitzblitz.signlearner;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Intent;
@@ -32,6 +33,8 @@ public class LessonLoaded extends ListActivity {
         setContentView(R.layout.activity_lesson_loaded);
 
 //        listView = (ListView)findViewById(R.id.LessonLoadedlistView);
+        ActionBar actionBar = getActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
 
         Intent intent = getIntent();

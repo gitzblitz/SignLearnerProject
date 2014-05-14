@@ -1,6 +1,10 @@
 package com.gitzblitz.signlearner;
 
+import android.app.ActionBar;
 import android.app.Activity;
+import android.drm.DrmStore;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
@@ -38,9 +42,14 @@ public class LessonDetail extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lesson_detail);
 
+//        ActionBar actionBar = getActionBar();
+//        actionBar.setDisplayHomeAsUpEnabled(true);
+
         /*find the buttons on the view*/
         back = (Button)findViewById(R.id.buttonBack);
         next = (Button)findViewById(R.id.buttonNext);
+
+
 
 
 
@@ -145,6 +154,28 @@ public class LessonDetail extends Activity {
 
         TextView textView = (TextView)findViewById(R.id.vidCaptiontextView);
         textView.setText(screen1.getVidCaption());
+
+        String image_path = screen1.getImagePath();
+
+        if(!image_path.equals("No image")){
+            File image = new File(Environment.getExternalStorageDirectory(),screen1.getImagePath());
+            Log.d(LOGTAG, image.getAbsolutePath());
+            if(image.exists()){
+           //     imageView.invalidate();
+                imageView = (ImageView)findViewById(R.id.screenImageView);
+                imageView.setImageBitmap(BitmapFactory.decodeFile(image.getAbsolutePath()));
+            }
+        }
+
+//        File image = new File(Environment.getExternalStorageDirectory(),screen1.getImagePath());
+//        Log.d(LOGTAG, image.getAbsolutePath());
+//        if(image.exists()){
+//            imageView = (ImageView)findViewById(R.id.screenImageView);
+//            imageView.setImageBitmap(BitmapFactory.decodeFile(image.getAbsolutePath()));
+//        } else {
+//               // imageView.setEnabled(false);
+//        }
+
 
 //        Toast.makeText(this,"video path: "+screenVideoURL, Toast.LENGTH_SHORT).show();
 

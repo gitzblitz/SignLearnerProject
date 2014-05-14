@@ -50,7 +50,8 @@
         </activity>
         <activity
             android:name="com.gitzblitz.signlearner.LessonList"
-            android:label="@string/title_activity_lesson_list" >
+            android:label="@string/title_activity_lesson_list"
+            android:parentActivityName=".MainActivity">
         </activity>
         <activity
             android:name="com.gitzblitz.signlearner.UnitLoaded"
@@ -58,11 +59,12 @@
         </activity>
         <activity
             android:name="com.gitzblitz.signlearner.LessonLoaded"
-            android:label="@string/title_activity_lesson_loaded" >
+            android:label="@string/title_activity_lesson_loaded"
+            android:parentActivityName=".LessonList">
         </activity>
         <activity
             android:name="com.gitzblitz.signlearner.LessonDetail"
-            android:label="@string/title_activity_lesson_detail" >
+            android:label="@string/title_activity_lesson_detail">
         </activity>
     </application>
 

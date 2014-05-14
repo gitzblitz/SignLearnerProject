@@ -16,6 +16,7 @@ import android.os.Build;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -30,14 +31,23 @@ public class LessonList extends ListActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lesson_list);
 
+        ActionBar actionBar = getActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
         LessonPullParser pullParser = new LessonPullParser();
         lessons = pullParser.parseXML(this);
 
         setTitle("Lessons");
 
+        if(lessons.size() != 0){
+            ArrayAdapter<Lesson> arrayAdapter = new ArrayAdapter<Lesson>(this, android.R.layout.simple_list_item_1,lessons);
+            setListAdapter(arrayAdapter);
+        }else {
+            Toast.makeText(this, "No lesson found", Toast.LENGTH_SHORT).show();
+            finish();
+        }
 
-        ArrayAdapter<Lesson> arrayAdapter = new ArrayAdapter<Lesson>(this, android.R.layout.simple_list_item_1,lessons);
-        setListAdapter(arrayAdapter);
+
 
 
     }

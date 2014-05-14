@@ -16,7 +16,7 @@ import android.widget.Toast;
 
 public class MainActivity extends Activity {
 
-    Button btnUnit;
+//    Button btnUnit;
     Button lessons;
 
     @Override
@@ -29,16 +29,16 @@ public class MainActivity extends Activity {
 //                    .add(R.id.container, new PlaceholderFragment())
 //                    .commit();
 //        }
-        btnUnit = (Button)findViewById(R.id.BtnUnits);
+//        btnUnit = (Button)findViewById(R.id.BtnUnits);
         lessons = (Button)findViewById(R.id.BtnLessons);
 
 
-        btnUnit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                goUnits();
-            }
-        });
+//        btnUnit.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                goUnits();
+//            }
+//        });
 
         lessons.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,10 +51,10 @@ public class MainActivity extends Activity {
 
 
 
-    private void goUnits(){
-       Intent i = new Intent(this,UnitList.class);
-       startActivity(i);
-    }
+//    private void goUnits(){
+//       Intent i = new Intent(this,UnitList.class);
+//       startActivity(i);
+//    }
 
     private void goLessons(){
         Intent i = new Intent(this,LessonList.class);
@@ -86,10 +86,6 @@ public class MainActivity extends Activity {
         int backButtonCount =0;
 
         if(backButtonCount >=1){
-//         Intent i = new Intent(Intent.ACTION_MAIN);
-//         i.addCategory(Intent.CATEGORY_HOME);
-//         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//         startActivity(i);
          finish();
         }
         else{
