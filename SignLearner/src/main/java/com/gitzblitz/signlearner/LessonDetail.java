@@ -50,9 +50,6 @@ public class LessonDetail extends Activity {
         next = (Button)findViewById(R.id.buttonNext);
 
 
-
-
-
         Bundle bundle = getIntent().getExtras();
 
         screen = bundle.getParcelable("screen");
