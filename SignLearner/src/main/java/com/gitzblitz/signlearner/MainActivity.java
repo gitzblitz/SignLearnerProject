@@ -5,6 +5,7 @@ import android.app.ActionBar;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,7 +19,10 @@ public class MainActivity extends Activity {
 
 //    Button btnUnit;
     Button lessons;
-
+    Button exit;
+    int exitButtonCount =0;
+    int backButtonCount =0;
+    private static final String LOGTAG = "SIGNLEARNER_MAIN";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +35,7 @@ public class MainActivity extends Activity {
 //        }
 //        btnUnit = (Button)findViewById(R.id.BtnUnits);
         lessons = (Button)findViewById(R.id.BtnLessons);
-
+        exit = (Button)findViewById(R.id.BtnExit);
 
 //        btnUnit.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -47,6 +51,14 @@ public class MainActivity extends Activity {
             }
         });
 
+        exit.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public  void onClick(View view){
+                //go to function
+                exitApplication();
+            }
+        });
+
     }
 
 
@@ -55,10 +67,23 @@ public class MainActivity extends Activity {
 //       Intent i = new Intent(this,UnitList.class);
 //       startActivity(i);
 //    }
+    private void exitApplication(){
+//        super.onBackPressed();
+
+        if(exitButtonCount >=1){
+//            Toast.makeText(this,"Press the exit button once again to close the application.",Toast.LENGTH_SHORT).show();
+            finish();
+        }else{
+            Toast.makeText(this,"Press the exit button once again to close the application.",Toast.LENGTH_SHORT).show();
+            exitButtonCount++;
+        }
+    }
 
     private void goLessons(){
         Intent i = new Intent(this,LessonList.class);
+//        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(i);
+//        finish();
     }
 
     @Override
@@ -83,14 +108,19 @@ public class MainActivity extends Activity {
 
     @Override
     public void onBackPressed() {
-        int backButtonCount =0;
+
 
         if(backButtonCount >=1){
+            Log.d(LOGTAG,  Integer.toString(backButtonCount));
          finish();
+//            super.onBackPressed();
         }
         else{
             Toast.makeText(this,"Press the back button once again to close the application.",Toast.LENGTH_SHORT).show();
             backButtonCount++;
+           // super.onBackPressed();
+            Log.d(LOGTAG, "back button count " +  Integer.toString(backButtonCount));
+
         }
     }
 
