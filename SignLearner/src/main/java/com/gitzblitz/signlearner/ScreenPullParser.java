@@ -29,7 +29,7 @@ public class ScreenPullParser {
     private static final String IMAGEPATH = "image";
 
     private static final String BASE = "/SignSupport/icdl/xml/";
-    private String filepath;
+//    private String filepath;
 
     private Screen currentScreen = null;
     private String currentTag = null;
@@ -49,6 +49,7 @@ public class ScreenPullParser {
 
             if(!f.exists()){
                 Log.d(LOGTAG, f+" does not exist");
+                //skip the file if does not exit.
             }else {
                 InputStream stream = new FileInputStream(f.getAbsolutePath());
 

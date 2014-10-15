@@ -24,7 +24,7 @@ public class LessonLoaded extends ListActivity {
     String screen_title = null;
     ArrayList<Screen> screens = null;
     private int counter = 0;
-
+    String lessonID;
 
 
     @Override
@@ -39,7 +39,7 @@ public class LessonLoaded extends ListActivity {
 
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
-        String lessonID = bundle.getString("lessonID");
+        lessonID = bundle.getString("lessonID");
 
         setTitle(lessonID);
 
@@ -92,6 +92,11 @@ public class LessonLoaded extends ListActivity {
         startActivity(intent);
 
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        return;
     }
 
     @Override

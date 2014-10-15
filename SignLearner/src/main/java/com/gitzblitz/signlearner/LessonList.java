@@ -96,6 +96,11 @@ public class LessonList extends ListActivity {
 
     /*Functions for buttons*/
 
+    @Override
+    public void onBackPressed() {
+        return;
+    }
+
     /**
      * A placeholder fragment containing a simple view.
      */

@@ -36,7 +36,7 @@ public class MainActivity extends Activity {
 //        btnUnit = (Button)findViewById(R.id.BtnUnits);
         lessons = (Button)findViewById(R.id.BtnLessons);
         exit = (Button)findViewById(R.id.BtnExit);
-
+            setTitle("Home");
 //        btnUnit.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
@@ -108,8 +108,6 @@ public class MainActivity extends Activity {
 
     @Override
     public void onBackPressed() {
-
-
         if(backButtonCount >=1){
             Log.d(LOGTAG,  Integer.toString(backButtonCount));
          finish();

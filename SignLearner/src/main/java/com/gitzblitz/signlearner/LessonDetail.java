@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.v4.app.NavUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -14,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.MediaController;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
@@ -42,8 +44,7 @@ public class LessonDetail extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lesson_detail);
 
-//        ActionBar actionBar = getActionBar();
-//        actionBar.setDisplayHomeAsUpEnabled(true);
+         getActionBar().setDisplayHomeAsUpEnabled(true);
 
         /*find the buttons on the view*/
         back = (Button)findViewById(R.id.buttonBack);
@@ -55,12 +56,9 @@ public class LessonDetail extends Activity {
         screen = bundle.getParcelable("screen");
         position = bundle.getInt("position");
 
-        Log.i(LOGTAG, Integer.toString(position));
+//        Log.i(LOGTAG, Integer.toString(position));
         listOfScreens = bundle.getParcelableArrayList("listOfScreens");
 
-//        for(Screen screen1: listOfScreens){
-//            Log.i(LOGTAG,"Screen " + screen1.getScreenID());
-//        }
         
         refreshDisplay();
 
@@ -88,50 +86,54 @@ public class LessonDetail extends Activity {
         /*check if button has reached the end of the list. If not increase the position and refresh display else disable next button*/
        if (position < listOfScreens.size()-1){
            position = position + 1;
-           back.setEnabled(true);
+//           back.setEnabled(true);
+           back.setVisibility(View.VISIBLE);
 //           Log.i(LOGTAG, "Position "+ position);
 
            refreshDisplay();
        } else {
-           next.setEnabled(false);
+//           next.setEnabled(false);
+           next.setVisibility(View.INVISIBLE);
        }
     }
 
     private void goBack() {
 
         if(position == 0){
-            back.setEnabled(false);
+//            back.setEnabled(false);
+            back.setVisibility(View.INVISIBLE);
         } else {
             position = position -1;
             refreshDisplay();
-            back.setEnabled(true);
+//            back.setEnabled(true);
+            back.setVisibility(View.VISIBLE);
         }
 
     }
 
     private void refreshDisplay() {
-
-       // ArrayList<Screen> temp = listOfScreens;
         Screen screen1 = listOfScreens.get(position);
         setTitle(screen1.getVidCaption());
         Log.i(LOGTAG, "Position "+ position);
 
         /*check the position to enable or disable the buttons*/
-        if(position == listOfScreens.size()){
-            next.setEnabled(false);
+        if(position >= listOfScreens.size()){
+//            next.setEnabled(false);
+            next.setVisibility(View.INVISIBLE);
+            Log.i(LOGTAG, "Position " + position);
         } else if(position == 0){
-            back.setEnabled(false);
+//            back.setEnabled(false);
+            back.setVisibility(View.INVISIBLE);
         } else  {
-            back.setEnabled(true);
-            next.setEnabled(true);
+//            back.setEnabled(true);
+            back.setVisibility(View.VISIBLE);
+//            next.setEnabled(true);
+            next.setVisibility(View.VISIBLE);
         }
 
-     //   int pos  = position;
-
-      //  screen1 = listOfScreens.get(pos);
 
         String screenVideoURL = screen1.getVideoURL();
-        Log.i(LOGTAG,"Path to video "+ screenVideoURL);
+//        Log.i(LOGTAG,"Path to video "+ screenVideoURL);
         File clip = new File(Environment.getExternalStorageDirectory(),screenVideoURL);
 
         if(clip.exists()){
@@ -156,7 +158,7 @@ public class LessonDetail extends Activity {
 
         if(!image_path.equals("No image")){
             File image = new File(Environment.getExternalStorageDirectory(),screen1.getImagePath());
-            Log.d(LOGTAG, image.getAbsolutePath());
+//            Log.d(LOGTAG, image.getAbsolutePath());
             if(image.exists()){
            //     imageView.invalidate();
                 imageView = (ImageView)findViewById(R.id.screenImageView);
@@ -164,17 +166,6 @@ public class LessonDetail extends Activity {
             }
         }
 
-//        File image = new File(Environment.getExternalStorageDirectory(),screen1.getImagePath());
-//        Log.d(LOGTAG, image.getAbsolutePath());
-//        if(image.exists()){
-//            imageView = (ImageView)findViewById(R.id.screenImageView);
-//            imageView.setImageBitmap(BitmapFactory.decodeFile(image.getAbsolutePath()));
-//        } else {
-//               // imageView.setEnabled(false);
-//        }
-
-
-//        Toast.makeText(this,"video path: "+screenVideoURL, Toast.LENGTH_SHORT).show();
 
     }
 
@@ -190,10 +181,21 @@ public class LessonDetail extends Activity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
+        switch (item.getItemId()){
+            case android.R.id.home:
+                NavUtils.navigateUpFromSameTask(this);
+                return true;
+            case R.id.action_settings:
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
-        return super.onOptionsItemSelected(item);
+
+    }
+
+    @Override
+    public void onBackPressed() {
+//        super.onBackPressed();
+        return;
     }
 }
