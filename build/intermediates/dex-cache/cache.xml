@@ -2,16 +2,16 @@
 <pre-dex-items>
 
     <item
-        dex="/Users/User/AndroidStudioProjects/SignLearnerProject/SignLearner/build/intermediates/pre-dexed/debug/support-v4-19.1.0-48c78e0cd2e9d5bf72d5302bfeb5bd6c69f92fbf.jar"
-        jar="/Users/User/Documents/android-sdk-macosx/extras/android/m2repository/com/android/support/support-v4/19.1.0/support-v4-19.1.0.jar"
-        jumboMode="false"
-        revision="19.1.0"
-        sha1="85f201b380937e61a9dce6ca90ccf6872abbfb67"/>
-    <item
         dex="/Users/User/AndroidStudioProjects/SignLearnerProject/SignLearner/build/intermediates/pre-dexed/debug/classes-39024e6c0ac06f0162359d3a44c07d16e520b4ee.jar"
         jar="/Users/User/AndroidStudioProjects/SignLearnerProject/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/classes.jar"
         jumboMode="false"
         revision="19.1.0"
         sha1="3499ceba05ca1f6037c6a2fad73df8f636224a28"/>
+    <item
+        dex="/Users/User/AndroidStudioProjects/SignLearnerProject/SignLearner/build/intermediates/pre-dexed/debug/support-v4-19.1.0-48c78e0cd2e9d5bf72d5302bfeb5bd6c69f92fbf.jar"
+        jar="/Users/User/Documents/android-sdk-macosx/extras/android/m2repository/com/android/support/support-v4/19.1.0/support-v4-19.1.0.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="85f201b380937e61a9dce6ca90ccf6872abbfb67"/>
 
 </pre-dex-items>

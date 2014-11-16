@@ -5,6 +5,7 @@ import android.app.ActionBar;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -13,13 +14,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.os.Build;
 import android.widget.Button;
+import android.widget.MediaController;
 import android.widget.Toast;
+import android.widget.VideoView;
+
+import java.io.File;
 
 public class MainActivity extends Activity {
 
 //    Button btnUnit;
+    String file_path = "/SignSupport/icdl/videos/Welcome/Welcome screen.mp4";
     Button lessons;
     Button exit;
+    private VideoView videoView;
     int exitButtonCount =0;
     int backButtonCount =0;
     private static final String LOGTAG = "SIGNLEARNER_MAIN";
@@ -44,6 +51,9 @@ public class MainActivity extends Activity {
 //            }
 //        });
 
+        // load the introvideo into the video frame
+        loadWelcomeVideo();
+
         lessons.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -61,9 +71,25 @@ public class MainActivity extends Activity {
 
     }
 
+    private void loadWelcomeVideo() {
+
+        File clip = new File(Environment.getExternalStorageDirectory(),file_path);
+
+        if(clip.exists()){
+            videoView = (VideoView)findViewById(R.id.welcomeVideoView);
+            MediaController mediaController = new MediaController(this);
+            mediaController.setAnchorView(videoView);
+            videoView.setMediaController(mediaController);
+            videoView.setVideoPath(clip.getAbsolutePath());
+            videoView.requestFocus();
+            videoView.start();
+        }else{
+            Toast.makeText(this, file_path +" cannot be found", Toast.LENGTH_LONG).show();
+        }
+    }
 
 
-//    private void goUnits(){
+    //    private void goUnits(){
 //       Intent i = new Intent(this,UnitList.class);
 //       startActivity(i);
 //    }
