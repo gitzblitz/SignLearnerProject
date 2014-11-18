@@ -47,19 +47,25 @@
             android:layout_alignLeft="@+id/buttonBack"
             android:layout_alignStart="@+id/buttonBack" />
 
-        <ImageView
-            android:adjustViewBounds="true"
-            android:id="@+id/screenImageView"
-            android:layout_above="@+id/buttonBack"
-            android:layout_marginBottom="48dp"
-            android:maxHeight="500dp"
-            android:maxWidth="400dp"
-            android:scaleType="fitCenter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
             android:layout_alignParentTop="true"
-            android:layout_alignRight="@+id/buttonNext"
-            android:layout_alignEnd="@+id/buttonNext" />
+            android:layout_above="@+id/buttonBack"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true">
+
+            <ImageView
+                android:adjustViewBounds="true"
+                android:id="@+id/screenImageView"
+                android:maxHeight="500dp"
+                android:maxWidth="400dp"
+                android:scaleType="fitCenter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true" />
+        </RelativeLayout>
     </RelativeLayout>
 
 </FrameLayout>

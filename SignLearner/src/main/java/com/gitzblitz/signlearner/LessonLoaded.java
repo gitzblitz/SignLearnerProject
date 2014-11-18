@@ -24,7 +24,7 @@ public class LessonLoaded extends ListActivity {
     String screen_title = null;
     ArrayList<Screen> screens = null;
     private int counter = 0;
-    String lessonID;
+    String section_title;
 
 
     @Override
@@ -39,13 +39,14 @@ public class LessonLoaded extends ListActivity {
 
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
-        lessonID = bundle.getString("lessonID");
+        screens = bundle.getParcelableArrayList("listOfScreens");
+        screen_title = bundle.getString("lessonTitle");
 
-        setTitle(lessonID);
+        setTitle(screen_title);
 
         /*Instantiate the parser and the */
-        ScreenPullParser screenPullParser = new ScreenPullParser();
-        screens = screenPullParser.parseXML(this,lessonID);
+//        ScreenPullParser screenPullParser = new ScreenPullParser();
+//        screens = screenPullParser.parseXML(this,lessonID);
         Log.d(LOGTAG, "List size = "+Integer.toString(screens.size()));
 
         if(screens.size() != 0){
@@ -76,19 +77,20 @@ public class LessonLoaded extends ListActivity {
     protected void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
         Screen s = (Screen) this.getListAdapter().getItem(position);
-        screen_title = s.toString();
+        section_title = s.toString();
         /*Toast to display the correct item is retrieved when clicked*/
-//        Toast.makeText(this,screen_title,Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this,section_title,Toast.LENGTH_SHORT).show();
 
+         Log.d(LOGTAG, "screenID="+s.getScreenID()+ " video="+ s.getVideoURL()+" image"+s.getImagePath()+ " vid caption="+s.getVidCaption());
         /*bundle to transfer data to the next activity*/
         Bundle bundle = new Bundle();
         bundle.putInt("position",position);
         bundle.putParcelable("screen", s);
         bundle.putParcelableArrayList("listOfScreens", screens);
-
+//
         Intent intent = new Intent(this,LessonDetail.class);
         intent.putExtras(bundle);
-        Log.i(LOGTAG, "intent loaded");
+//        Log.i(LOGTAG, "intent loaded");
         startActivity(intent);
 
 

@@ -14,7 +14,25 @@ public class Units {
     private int id;
 //    private ArrayList<String> lessonIDs;
     private ArrayList<String> lessonIDs = new ArrayList<String>();
+    private ArrayList<String> lessons = new ArrayList<String>();
+    private ArrayList<Screen> screens = new ArrayList<Screen>();
 
+
+    public ArrayList<Screen> getScreens() {
+        return screens;
+    }
+
+    public void setScreens(ArrayList<Screen> screens) {
+        this.screens = screens;
+    }
+
+    public ArrayList<String> getLessons() {
+        return lessons;
+    }
+
+    public void setLessons(ArrayList<String> lessons) {
+        this.lessons = lessons;
+    }
 
     public String getTitle() {
         return title;

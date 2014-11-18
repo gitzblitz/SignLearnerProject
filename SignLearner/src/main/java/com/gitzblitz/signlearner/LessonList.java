@@ -25,6 +25,8 @@ public class LessonList extends ListActivity {
     private static final String LOGTAG = "SIGNLEARNER_LESSONLIST";
     String lesson_title = null;
     ArrayList<Lesson> lessons = null;
+    ArrayList<Lesson> new_lessons = null;
+    ArrayList<Screen> listOfScreens = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,13 +36,19 @@ public class LessonList extends ListActivity {
         ActionBar actionBar = getActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-        LessonPullParser pullParser = new LessonPullParser();
-        lessons = pullParser.parseXML(this);
+        CoursePullParser coursePullParser = new CoursePullParser();
+        new_lessons = coursePullParser.parse(this);
+
+         Log.d(LOGTAG, " lesson size= "+ Integer.toString(new_lessons.size()));
+//        LessonPullParser pullParser = new LessonPullParser();
+//        lessons = pullParser.parseXML(this);
+
+
 
         setTitle("Lessons");
 
-        if(lessons.size() != 0){
-            ArrayAdapter<Lesson> arrayAdapter = new ArrayAdapter<Lesson>(this, android.R.layout.simple_list_item_1,lessons);
+        if(new_lessons.size() != 0){
+            ArrayAdapter<Lesson> arrayAdapter = new ArrayAdapter<Lesson>(this, android.R.layout.simple_list_item_1,new_lessons);
             setListAdapter(arrayAdapter);
         }else {
             Toast.makeText(this, "No lesson found", Toast.LENGTH_SHORT).show();
@@ -62,14 +70,25 @@ public class LessonList extends ListActivity {
 
         String lessonId = lesson.getId();
 
+
+
+        ArrayList<Screen> scr = lesson.getScreens();
+
+
+            Log.d(LOGTAG, "size of the list of screens= " + Integer.toString(scr.size()));
+        Log.d(LOGTAG, "size of the list of lessons= " + Integer.toString(new_lessons.size()));
+
+
         Log.d(LOGTAG, "lesson id: "+ lessonId + " lesson title " + lesson_title);
 
         Bundle b = new Bundle();
-        b.putString("lessonID", lessonId);
-
+        b.putParcelableArrayList("listOfScreens", scr);
+        b.putString("lessonTitle", lesson_title);
+//        b.putString("lessonID", lessonId);
+//
         Intent intent = new Intent(this, LessonLoaded.class);
         intent.putExtras(b);
-
+//
         startActivity(intent);
 
     }

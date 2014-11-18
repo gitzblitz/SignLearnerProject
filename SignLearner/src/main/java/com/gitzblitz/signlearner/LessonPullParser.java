@@ -14,7 +14,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by User on 2014/05/13.
@@ -24,12 +23,14 @@ public class LessonPullParser {
     private static final String LOGTAG = "LESSON_PARSER";
     private static final String LESSON_TITLE = "title";
     private static final String LESSON_ID = "id";
-    private static final String KEY_CATEGORY = "unit";
+    private static final String UNIT = "unit";
 
     private Lesson currLesson = null;
     private String currTag = null;
+    private Screen currScreen = null;
 
     public ArrayList<Lesson> lessons = new ArrayList<Lesson>();
+    public ArrayList<Screen> screens = new ArrayList<Screen>();
 
     public ArrayList<Lesson> parseXML(Context context){
 
@@ -92,7 +93,7 @@ public class LessonPullParser {
                 currLesson.setTitle(xmlText);
             } else if (currTag.equals(LESSON_ID)){
                 currLesson.setId(xmlText);
-            } else if ((currTag.equals(KEY_CATEGORY))){
+            } else if ((currTag.equals(UNIT))){
                 currLesson.setCategory(xmlText);
             }
         }

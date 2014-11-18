@@ -30,6 +30,7 @@ public class LessonDetail extends Activity {
     private VideoView videoView;
     Button back;
     Button next;
+    private static final String BASE = "SignSupport/icdl";
 
     Screen screen = null;
     int position = 0;
@@ -50,7 +51,7 @@ public class LessonDetail extends Activity {
         back = (Button)findViewById(R.id.buttonBack);
         next = (Button)findViewById(R.id.buttonNext);
 
-
+        imageView = (ImageView)findViewById(R.id.screenImageView);
         Bundle bundle = getIntent().getExtras();
 
         screen = bundle.getParcelable("screen");
@@ -134,7 +135,7 @@ public class LessonDetail extends Activity {
 
         String screenVideoURL = screen1.getVideoURL();
 //        Log.i(LOGTAG,"Path to video "+ screenVideoURL);
-        File clip = new File(Environment.getExternalStorageDirectory(),screenVideoURL);
+        File clip = new File(Environment.getExternalStorageDirectory(),BASE+screenVideoURL);
 
         if(clip.exists()){
             Log.d(LOGTAG, clip.getAbsolutePath() +" exists.");
@@ -152,17 +153,22 @@ public class LessonDetail extends Activity {
         }
 
         TextView textView = (TextView)findViewById(R.id.vidCaptiontextView);
-        textView.setText(screen1.getVidCaption());
+        textView.setText("");
+//        textView.setText(screen1.getVidCaption());
 
         String image_path = screen1.getImagePath();
+        if(image_path == null)
+            image_path = "No image";
 
         if(!image_path.equals("No image")){
-            File image = new File(Environment.getExternalStorageDirectory(),screen1.getImagePath());
-//            Log.d(LOGTAG, image.getAbsolutePath());
+            File image = new File(Environment.getExternalStorageDirectory(),BASE+screen1.getImagePath());
+            Log.d(LOGTAG, image.getAbsolutePath());
             if(image.exists()){
            //     imageView.invalidate();
-                imageView = (ImageView)findViewById(R.id.screenImageView);
+//                imageView = (ImageView)findViewById(R.id.screenImageView);
                 imageView.setImageBitmap(BitmapFactory.decodeFile(image.getAbsolutePath()));
+            }else{
+                imageView.setImageResource(0);
             }
         }
 

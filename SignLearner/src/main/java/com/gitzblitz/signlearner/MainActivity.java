@@ -1,18 +1,13 @@
 package com.gitzblitz.signlearner;
 
 import android.app.Activity;
-import android.app.ActionBar;
-import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.os.Build;
 import android.widget.Button;
 import android.widget.MediaController;
 import android.widget.Toast;
@@ -23,7 +18,7 @@ import java.io.File;
 public class MainActivity extends Activity {
 
 //    Button btnUnit;
-    String file_path = "/SignSupport/icdl/videos/Welcome/Welcome screen.mp4";
+    private static final String WELCOME_VIDEO_FILE_PATH = "/SignSupport/icdl/videos/Welcome/Welcome screen.mp4";
     Button lessons;
     Button exit;
     private VideoView videoView;
@@ -73,7 +68,7 @@ public class MainActivity extends Activity {
 
     private void loadWelcomeVideo() {
 
-        File clip = new File(Environment.getExternalStorageDirectory(),file_path);
+        File clip = new File(Environment.getExternalStorageDirectory(), WELCOME_VIDEO_FILE_PATH);
 
         if(clip.exists()){
             videoView = (VideoView)findViewById(R.id.welcomeVideoView);
@@ -84,7 +79,7 @@ public class MainActivity extends Activity {
             videoView.requestFocus();
             videoView.start();
         }else{
-            Toast.makeText(this, file_path +" cannot be found", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, WELCOME_VIDEO_FILE_PATH +" cannot be found", Toast.LENGTH_LONG).show();
         }
     }
 

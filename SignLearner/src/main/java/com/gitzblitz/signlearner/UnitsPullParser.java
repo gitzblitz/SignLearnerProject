@@ -29,6 +29,11 @@ public class UnitsPullParser {
     private static final String UNIT_ID = "unitID";
     private static final String KEY_UNIT = "unit";
     private static final String KEY_LESSON ="lesson";
+    private static final String KEY_SCREEN = "screen";
+    private static final String KEY_SCREENID = "screenID";
+    private static final String KEY_IMAGE ="image";
+    private static final String KEY_VIDEO = "video";
+
     private static final String ns = null;
 
     private Units currUnit = null;
@@ -39,6 +44,8 @@ public class UnitsPullParser {
 
     public List<Units> units = new ArrayList<Units>();
     public ArrayList<String> lessonIdList = null;
+    public ArrayList<Lesson> lessons = null;
+    public ArrayList<String> screenss = null;
 
 
     public List<Units> getUnitsFromFile(Context context) {
