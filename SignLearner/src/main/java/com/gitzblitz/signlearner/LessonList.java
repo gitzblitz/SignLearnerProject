@@ -20,46 +20,46 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+/**
+ * This class loads a list of lesson parsed from XML data in the CoursePullParser
+ */
 public class LessonList extends ListActivity {
 
     private static final String LOGTAG = "SIGNLEARNER_LESSONLIST";
     String lesson_title = null;
-    ArrayList<Lesson> lessons = null;
     ArrayList<Lesson> new_lessons = null;
-    ArrayList<Screen> listOfScreens = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lesson_list);
-
+        /*Initialise the screen widgets*/
         ActionBar actionBar = getActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
+        /*Initialize the XMLPullParser object and set it to load the new_lessons array list*/
         CoursePullParser coursePullParser = new CoursePullParser();
         new_lessons = coursePullParser.parse(this);
 
-         Log.d(LOGTAG, " lesson size= "+ Integer.toString(new_lessons.size()));
-//        LessonPullParser pullParser = new LessonPullParser();
-//        lessons = pullParser.parseXML(this);
+        /*Confirm the list of lessons loaded*/
+         Log.d(LOGTAG, " lesson list size= "+ Integer.toString(new_lessons.size()));
 
-
-
+        /*Set the title of the screen Activity*/
         setTitle("Lessons");
 
+        /*Loop through the Lesson list and set the list to the ArrayAdapter*/
         if(new_lessons.size() != 0){
             ArrayAdapter<Lesson> arrayAdapter = new ArrayAdapter<Lesson>(this, android.R.layout.simple_list_item_1,new_lessons);
             setListAdapter(arrayAdapter);
         }else {
             Toast.makeText(this, "No lesson found", Toast.LENGTH_SHORT).show();
+            Log.d(LOGTAG,"No lesson found");
             finish();
         }
 
-
-
-
     }
 
+    /*When an lesson is clicked get the */
     @Override
     protected void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
@@ -69,27 +69,38 @@ public class LessonList extends ListActivity {
         lesson_title = lesson.getTitle();
 
         String lessonId = lesson.getId();
+        Log.d(LOGTAG," The lesson clicked is " + lesson_title);
+
+        try {
+
+            ArrayList<Screen> scr = lesson.getScreens();
+
+            if (scr.isEmpty()) {
+                /*If listed lesson does not contain any screen (lesson sections) objects*/
+                Toast.makeText(this, "No lesson Found", Toast.LENGTH_SHORT).show();
+                Log.d(LOGTAG, "No screens found for "+ lesson.getTitle());
+            } else {
+                /*Log size of lesson loaded for debugging purposes*/
+                Log.d(LOGTAG, "size of the list of screens= " + Integer.toString(scr.size()));
+                Log.d(LOGTAG, "size of the list of lessons= " + Integer.toString(new_lessons.size()));
 
 
+                Log.d(LOGTAG, "lesson id: " + lessonId + " lesson title " + lesson_title);
+                /*Create a new bundle to send the list of lesson sections to LessonLoaded activity*/
+                Bundle b = new Bundle();
+                b.putParcelableArrayList("listOfScreens", scr);
+                b.putString("lessonTitle", lesson_title);
 
-        ArrayList<Screen> scr = lesson.getScreens();
-
-
-            Log.d(LOGTAG, "size of the list of screens= " + Integer.toString(scr.size()));
-        Log.d(LOGTAG, "size of the list of lessons= " + Integer.toString(new_lessons.size()));
-
-
-        Log.d(LOGTAG, "lesson id: "+ lessonId + " lesson title " + lesson_title);
-
-        Bundle b = new Bundle();
-        b.putParcelableArrayList("listOfScreens", scr);
-        b.putString("lessonTitle", lesson_title);
-//        b.putString("lessonID", lessonId);
-//
-        Intent intent = new Intent(this, LessonLoaded.class);
-        intent.putExtras(b);
-//
-        startActivity(intent);
+                Intent intent = new Intent(this, LessonLoaded.class);
+                intent.putExtras(b);
+                //
+                startActivity(intent);
+            }
+        }catch (NullPointerException e){
+            e.getMessage();
+            Toast.makeText(this, "No lesson Found", Toast.LENGTH_SHORT).show();
+            Log.d(LOGTAG, "No screens found for "+ lesson.getTitle());
+        }
 
     }
 
@@ -120,20 +131,6 @@ public class LessonList extends ListActivity {
         return;
     }
 
-    /**
-     * A placeholder fragment containing a simple view.
-     */
-    /*public static class PlaceholderFragment extends Fragment {
 
-        public PlaceholderFragment() {
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_lesson_list, container, false);
-            return rootView;
-        }
-    }*/
 
 }

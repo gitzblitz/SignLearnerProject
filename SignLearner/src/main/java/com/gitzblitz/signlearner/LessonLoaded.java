@@ -17,6 +17,11 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+/**
+ * Created by George Ng'ethe on 2014/05/13.
+ * This class load a list of lesson objects and displays them by Lesson name
+ * It takes a bundled object containing a parcelable ArrayList from
+ */
 
 public class LessonLoaded extends ListActivity {
 
@@ -32,7 +37,6 @@ public class LessonLoaded extends ListActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lesson_loaded);
 
-//        listView = (ListView)findViewById(R.id.LessonLoadedlistView);
         ActionBar actionBar = getActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
@@ -45,9 +49,6 @@ public class LessonLoaded extends ListActivity {
         setTitle(screen_title);
 
         /*Instantiate the parser and the */
-//        ScreenPullParser screenPullParser = new ScreenPullParser();
-//        screens = screenPullParser.parseXML(this,lessonID);
-        Log.d(LOGTAG, "List size = "+Integer.toString(screens.size()));
 
         if(screens.size() != 0){
             ArrayAdapter<Screen> adapter= new ArrayAdapter<Screen>(this,android.R.layout.simple_list_item_1,screens);
@@ -57,20 +58,6 @@ public class LessonLoaded extends ListActivity {
             finish();
         }
 
-
-
-//        // set up the adapter
-//        ArrayAdapter<Screen> adapter = new ArrayAdapter<Screen>(this, android.R.layout.simple_list_item_1,screens);
-//        listView.setAdapter(adapter);
-//
-//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//
-//            }
-//        });
-
-//
     }
 
     @Override
@@ -78,10 +65,7 @@ public class LessonLoaded extends ListActivity {
         super.onListItemClick(l, v, position, id);
         Screen s = (Screen) this.getListAdapter().getItem(position);
         section_title = s.toString();
-        /*Toast to display the correct item is retrieved when clicked*/
-//        Toast.makeText(this,section_title,Toast.LENGTH_SHORT).show();
 
-         Log.d(LOGTAG, "screenID="+s.getScreenID()+ " video="+ s.getVideoURL()+" image"+s.getImagePath()+ " vid caption="+s.getVidCaption());
         /*bundle to transfer data to the next activity*/
         Bundle bundle = new Bundle();
         bundle.putInt("position",position);
@@ -90,7 +74,7 @@ public class LessonLoaded extends ListActivity {
 //
         Intent intent = new Intent(this,LessonDetail.class);
         intent.putExtras(bundle);
-//        Log.i(LOGTAG, "intent loaded");
+/*Start intent with the new list of screens*/
         startActivity(intent);
 
 

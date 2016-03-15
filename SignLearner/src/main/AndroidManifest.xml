@@ -8,6 +8,14 @@
         android:minSdkVersion="14"
         android:targetSdkVersion="16" />
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -22,15 +30,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.gitzblitz.signlearner.UnitList"
-            android:label="@string/title_activity_unit_list" >
-        </activity>
-        <activity
-            android:name="com.gitzblitz.signlearner.SpecialKeysIntro"
-            android:label="@string/title_activity_special_keys_intro"
-            android:screenOrientation="portrait" >
-        </activity>
-        <activity
             android:name="com.gitzblitz.signlearner.SplashScreen"
             android:label="@string/title_activity_splash_screen"
             android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" >
@@ -41,40 +40,25 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.gitzblitz.signlearner.SpecialKeysIntro2"
-            android:label="@string/title_activity_special_keys_intro2" >
-        </activity>
-        <activity
-            android:name="com.gitzblitz.signlearner.SpecialKeysExamples"
-            android:label="Special Keys - Examples" >
-        </activity>
-        <activity
             android:name="com.gitzblitz.signlearner.LessonList"
             android:label="@string/title_activity_lesson_list"
-            android:parentActivityName=".MainActivity">
-        </activity>
-        <activity
-            android:name="com.gitzblitz.signlearner.UnitLoaded"
-            android:launchMode="singleTop"
-            android:label="@string/title_activity_unit_one" >
+            android:parentActivityName="com.gitzblitz.signlearner.MainActivity" >
         </activity>
         <activity
             android:name="com.gitzblitz.signlearner.LessonLoaded"
             android:label="@string/title_activity_lesson_loaded"
             android:launchMode="singleTop"
-            android:parentActivityName=".LessonList">
+            android:parentActivityName="com.gitzblitz.signlearner.LessonList" >
         </activity>
         <activity
             android:name="com.gitzblitz.signlearner.LessonDetail"
             android:label="@string/title_activity_lesson_detail"
-            android:parentActivityName=".LessonLoaded">
+            android:parentActivityName="com.gitzblitz.signlearner.LessonLoaded" >
+        </activity>
+        <activity
+            android:name="com.gitzblitz.signlearner.LessonsActivity"
+            android:label="@string/title_activity_lessons" >
         </activity>
     </application>
-
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.VIBRATE" />
 
 </manifest>

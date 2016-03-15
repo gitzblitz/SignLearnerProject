@@ -18,7 +18,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by User on 2014/11/18.
+ * Created by George Ng'ethe on 2014/11/18.
+ * This class loads an XML from a file, parses it and stores it in the defined
  */
 public class CoursePullParser {
 
@@ -32,17 +33,13 @@ public class CoursePullParser {
     private static final String KEY_IMAGE ="image";
     private static final String KEY_VIDEO = "video";
     private static final String KEY_VIDEO_CAPTION = "vid_caption";
-
     private static final String LOGTAG = "COURSE_PARSER";
-    private static final String ns = null;
+
     private String currTag = null;
     private Lesson currLesson = null;
     private Screen currScreen = null;
-    private String tagText = null;
 
-    public ArrayList<Units> units = new ArrayList<Units>();
-    public ArrayList<String> lessonIdList = null;
-    public ArrayList<Lesson> lessons = null;
+    public ArrayList<Lesson> lessons = new ArrayList<Lesson>();
     public ArrayList<Screen> screenss = new ArrayList<Screen>();
 
     public ArrayList<Lesson> parse(Context context)  {
@@ -53,31 +50,19 @@ public class CoursePullParser {
             XmlPullParser parser = factory.newPullParser();
 
             File file = new File(Environment.getExternalStorageDirectory(), "SignSupport/icdl/xml/e learner self study.xml");
-
+/*Check if the file exists*/
             if (!file.exists()) {
                 Log.d(LOGTAG, file + " does not exist");
             } else {
+                /*Open an inputstream to read from the file*/
                 InputStream stream = new FileInputStream(file.getAbsolutePath());
                 parser.setInput(stream, null);
 
                 int eventType = parser.getEventType();
 
-//                while (eventType != XmlPullParser.END_DOCUMENT) {
-//                    if (eventType == XmlPullParser.START_TAG) {
-//                        processStartTag(parser.getName());
-//                    } else if (eventType == XmlPullParser.END_TAG) {
-//                        currTag = null;
-//
-//                    } else if (eventType == XmlPullParser.TEXT) {
-//                        processText(parser.getText());
-//                    }else {
-////                        skip (parser);
-//                    }
-//                    eventType = parser.next();
-//                }
 
                 while(eventType != XmlPullParser.END_DOCUMENT){
-
+                    /*Get the XML tag name and switch between the tags parsing the XML*/
                     String tagname = parser.getName();
 
 
@@ -97,17 +82,28 @@ public class CoursePullParser {
                                 String id = parser.getAttributeValue(null, "lesson_id");
                                 String lesson_type = parser.getAttributeValue(null, "lesson_type");
                                 Log.d(LOGTAG, "lesson title="+title+" lesson id="+id+" lesson type="+lesson_type);
+
                                 currLesson = new Lesson();
                                 currLesson.setCategory(lesson_type);
                                 currLesson.setId(id);
                                 currLesson.setTitle(title);
-                                lessons = new ArrayList<Lesson>();
+//                                currLesson.setScreens(screenss);
+
+                                lessons.add(currLesson);
+                                if(screenss.isEmpty()){
+                                    Log.d(LOGTAG, "screens list is empty");
+                                }else {
+
+                                    Log.d(LOGTAG, "Screens list has "+ Integer.toString(screenss.size()) );
+//                                    screenss.clear();
+                                }
 
                             }else if (tagname.equalsIgnoreCase(KEY_SCREEN)){
 
                                 Log.d(LOGTAG, "New Screen object");
-                                currScreen = new Screen();
-                                screenss.add(currScreen);
+                                currScreen = new Screen(); // create new screen object once you get a screen tag
+//
+                                screenss.add(currScreen); // add current screen to the list of screens
                             }
                             break;
                         case XmlPullParser.TEXT:
@@ -121,23 +117,32 @@ public class CoursePullParser {
                                 Log.d(LOGTAG, "end of unit");
                             }else if(tagname.equalsIgnoreCase(KEY_LESSON)){
 
-                                currLesson.setScreens(screenss);
-                                lessons.add(currLesson);
+                                    if(screenss.isEmpty())
+                                    {
+                                        Log.d(LOGTAG, "No screens for this lesson ");
+                                    }else{
+                                        currLesson.setScreens(screenss); // Set the current lesson to the list of screens
+                                        Log.d(LOGTAG, "list of screens added for Lesson: " + currLesson.getTitle()+ " with size "+ Integer.toString(screenss.size()));
+                                        Log.d(LOGTAG, "End of lesson");
+//
+                                    }
+//                                screenss.clear();
+//                                lessons.add(currLesson);
                             }else if (tagname.equalsIgnoreCase(KEY_SCREEN)){
 //                                screenss.add(currScreen);
-//                                currLesson.setScreens(screenss);
-                                Log.d(LOGTAG, "end of screen");
+
+
                             } else if(tagname.equalsIgnoreCase(KEY_IMAGE)){
-                                Log.d(LOGTAG, "image=" + currTag);
+                                /*Store the image path*/
                                 currScreen.setImagePath(currTag);
                             } else if (tagname.equalsIgnoreCase(KEY_SCREENID)){
+                                /*Store the Screen ID*/
                                 currScreen.setScreenID(currTag);
-                                Log.d(LOGTAG, "ScreenID=" + currTag);
                             } else if(tagname.equalsIgnoreCase(KEY_VIDEO)){
-                                Log.d(LOGTAG, "video="+ currTag);
+                                /*Store the videoURL*/
                                 currScreen.setVideoURL(currTag);
                             }else if (tagname.equalsIgnoreCase(KEY_VIDEO_CAPTION)){
-                                Log.d(LOGTAG, "caption="+ currTag);
+                                /*Store the video caption*/
                                 currScreen.setVidCaption(currTag);
                             }
                             break;
@@ -159,59 +164,4 @@ public class CoursePullParser {
 
         return lessons;
     }
-
-//    private void skip(XmlPullParser parser) throws XmlPullParserException, IOException{
-//        if(parser.getEventType() != XmlPullParser.START_TAG){
-//            throw new IllegalStateException();
-//
-//            int depth = 1;
-//            while (depth !=0){
-//                switch (parser.next()){
-//                    case XmlPullParser.END_TAG:
-//                        depth--;
-//                        break;
-//                    case XmlPullParser.START_TAG:
-//                        depth++;
-//                        break;
-//                }
-//            }
-//        }
-//    }
-
-    private void processStartTag(String name) {
-        if(name.equalsIgnoreCase(KEY_LESSON)){
-            currLesson = new Lesson();
-            lessons.add(currLesson);
-        }else if (name.equalsIgnoreCase(KEY_SCREEN)){
-            currScreen = new Screen();
-            screenss.add(currScreen);
-            currLesson.setScreens(screenss);
-        }else if(name.equalsIgnoreCase("unit")){
-            Log.d(LOGTAG, "New unit detected");
-        }
-        else if(name.equalsIgnoreCase("course")) {
-            Log.d(LOGTAG, "New course detected");
-        }else
-        {
-            currTag = name;
-        }
-
-    }
-    private void processText(String text){
-        String xmlText = text;
-        if(currLesson != null && currTag != null && currScreen != null){
-            if(currTag.equals(KEY_IMAGE)){
-                currScreen.setImagePath(xmlText);
-            } else if (currTag.equals(KEY_VIDEO)){
-                currScreen.setVideoURL(xmlText);
-            } else if (currTag.equals(KEY_SCREENID)){
-                currScreen.setScreenID(xmlText);
-            }else if (currTag.equals(KEY_VIDEO_CAPTION)){
-                currScreen.setVidCaption(xmlText);
-            }
-        }
-
-    }
-
-
 }

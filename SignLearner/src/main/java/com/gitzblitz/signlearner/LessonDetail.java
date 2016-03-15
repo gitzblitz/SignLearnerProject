@@ -1,3 +1,4 @@
+
 package com.gitzblitz.signlearner;
 
 import android.app.ActionBar;
@@ -25,6 +26,7 @@ import org.w3c.dom.Text;
 import java.io.File;
 import java.util.ArrayList;
 
+/*Class that displays the lesson detail using a screen object*/
 
 public class LessonDetail extends Activity {
     private VideoView videoView;
@@ -57,7 +59,7 @@ public class LessonDetail extends Activity {
         screen = bundle.getParcelable("screen");
         position = bundle.getInt("position");
 
-//        Log.i(LOGTAG, Integer.toString(position));
+        Log.i(LOGTAG, Integer.toString(position));
         listOfScreens = bundle.getParcelableArrayList("listOfScreens");
 
         
@@ -84,20 +86,18 @@ public class LessonDetail extends Activity {
     }
 
     private void goNext() {
-        /*check if button has reached the end of the list. If not increase the position and refresh display else disable next button*/
+        /*check if user has reached the end of the list. If not increase the position and refresh display else disable next button*/
        if (position < listOfScreens.size()-1){
            position = position + 1;
-//           back.setEnabled(true);
-           back.setVisibility(View.VISIBLE);
-//           Log.i(LOGTAG, "Position "+ position);
 
+           back.setVisibility(View.VISIBLE);
            refreshDisplay();
        } else {
-//           next.setEnabled(false);
            next.setVisibility(View.INVISIBLE);
        }
     }
 
+    /*Method to navigate backwards through the list of screens*/
     private void goBack() {
 
         if(position == 0){
@@ -111,7 +111,7 @@ public class LessonDetail extends Activity {
         }
 
     }
-
+    /*Refresh display after a button click to move to the next or previous video instruction*/
     private void refreshDisplay() {
         Screen screen1 = listOfScreens.get(position);
         setTitle(screen1.getVidCaption());
@@ -151,21 +151,23 @@ public class LessonDetail extends Activity {
         }else {
             Toast.makeText(this, screenVideoURL +" cannot be found", Toast.LENGTH_LONG).show();
         }
-
+        /*Set the text of video caption*/
         TextView textView = (TextView)findViewById(R.id.vidCaptiontextView);
         textView.setText("");
 //        textView.setText(screen1.getVidCaption());
 
         String image_path = screen1.getImagePath();
-        if(image_path == null)
+        if(image_path == null){
             image_path = "No image";
+            imageView.setVisibility(View.INVISIBLE);
+        }
 
+        /*Check if an image exists*/
         if(!image_path.equals("No image")){
             File image = new File(Environment.getExternalStorageDirectory(),BASE+screen1.getImagePath());
             Log.d(LOGTAG, image.getAbsolutePath());
             if(image.exists()){
-           //     imageView.invalidate();
-//                imageView = (ImageView)findViewById(R.id.screenImageView);
+                imageView.setVisibility(View.VISIBLE);
                 imageView.setImageBitmap(BitmapFactory.decodeFile(image.getAbsolutePath()));
             }else{
                 imageView.setImageResource(0);

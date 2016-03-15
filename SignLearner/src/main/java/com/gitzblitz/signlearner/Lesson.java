@@ -3,7 +3,8 @@ package com.gitzblitz.signlearner;
 import java.util.ArrayList;
 
 /**
- * Created by User on 2014/05/13.
+ * Created by George Ng'ethe on 2014/05/13.
+ * Class to model a lesson that contains a list of screen objects
  */
 public class Lesson {
     private String id;

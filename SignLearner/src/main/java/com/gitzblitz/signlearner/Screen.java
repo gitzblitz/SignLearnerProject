@@ -4,7 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 /**
- * Created by User on 2014/05/11.
+ * Created by George Ng'ethe on 2014/05/11.
  */
 public class Screen implements Parcelable {
 
